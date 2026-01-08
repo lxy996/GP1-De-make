@@ -79,6 +79,9 @@ public class HandGrab : MonoBehaviour
         Transform hold;
         Vector3 originLocal;
 
+        bool grabbed = false;
+        ProjectileOwner lockOwner = null;
+
         if (isLeft)
         {
             end = leftEnd;
@@ -97,6 +100,19 @@ public class HandGrab : MonoBehaviour
         // === 1. Detect the target to be grabbed ===
         if (FindBestTarget(out Rigidbody targetRb, out Vector3 targetWorld))
         {
+            lockOwner = targetRb.GetComponent<ProjectileOwner>();
+            if (lockOwner != null)
+            {
+                if (lockOwner.isHeld)
+                {
+                    end.localPosition = originLocal;
+                    SetBusy(isLeft, false);
+                    yield break;
+                }
+                lockOwner.isHeld = true;      // Avoid grabbing the same ball with both hands at the same time
+                lockOwner.holder = hold;      // Declare the owner of the ball
+            }
+
             Vector3 targetLocal = end.parent.InverseTransformPoint(targetWorld);
 
             // === 2. Extend ===
@@ -105,7 +121,20 @@ public class HandGrab : MonoBehaviour
             // === 3. Grab the target ===
             if (targetRb != null)
             {
+                // Marking ownership
+                var ownerComp = targetRb.GetComponent<ProjectileOwner>();
+                if (ownerComp != null) ownerComp.owner = Team.Player;
+                
+                // Turn off damage
+                var dmgComp = targetRb.GetComponent<ProjectileDamage>();
+                if (dmgComp != null) dmgComp.armed = false;
+
+                // Clear the velocity
+                targetRb.linearVelocity = Vector3.zero;
+                targetRb.angularVelocity = Vector3.zero;
+
                 targetRb.isKinematic = true;
+                // To prevent the ball from floating in the air after being caught
                 targetRb.interpolation = RigidbodyInterpolation.None;
 
                 targetRb.transform.SetParent(hold, false);
@@ -114,6 +143,8 @@ public class HandGrab : MonoBehaviour
 
                 if (isLeft) leftHeld = targetRb;
                 else rightHeld = targetRb;
+
+                grabbed = true;
             }
 
             // === 4. Retract ===
@@ -140,6 +171,13 @@ public class HandGrab : MonoBehaviour
             yield return MoveLocal(end, punchLocal, originLocal, emptyRetractTime);
         }
 
+        // Unify unlocking here if the grab fails for any reason
+        if (!grabbed && lockOwner != null)
+        {
+            lockOwner.isHeld = false;
+            lockOwner.holder = null;
+        }
+
         end.localPosition = originLocal;
         SetBusy(isLeft, false);
     }
@@ -163,6 +201,16 @@ public class HandGrab : MonoBehaviour
         
         held.isKinematic = false;
         held.interpolation = RigidbodyInterpolation.Interpolate;
+        
+        var ownerComp = held.GetComponent<ProjectileOwner>();
+        if (ownerComp != null)
+        {
+            ownerComp.owner = Team.Player;
+            ownerComp.isHeld = false;
+            ownerComp.holder = null;
+        }
+        var dmgComp = held.GetComponent<ProjectileDamage>();
+        if (dmgComp != null) dmgComp.armed = true;
 
         // Clear the initial velocity
         held.linearVelocity = Vector3.zero;
@@ -204,6 +252,11 @@ public class HandGrab : MonoBehaviour
         foreach (var hit in hits)
         {
             if (hit.rigidbody == null) 
+                continue;
+
+            // Avoid hand-to-hand conflicts or players/enemies stealing the ball from each other's hands.
+            ProjectileOwner ownerComp = hit.rigidbody.GetComponent<ProjectileOwner>();
+            if (ownerComp != null && ownerComp.isHeld)
                 continue;
 
             // Detect whether there are obstructions in front of the target.

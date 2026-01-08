@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7768895531322031306}
   - component: {fileID: 4160035111112278763}
   - component: {fileID: 7310671409779781473}
+  - component: {fileID: 7526368585953332153}
+  - component: {fileID: 2428616337305756095}
   m_Layer: 10
   m_Name: Ball
   m_TagString: Untagged
@@ -137,6 +139,37 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7526368585953332153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961376498851539704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75980bb01eed534b933bf32dcd466bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  owner: 2
+  isHeld: 0
+  holder: {fileID: 0}
+--- !u!114 &2428616337305756095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961376498851539704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ab6d2ef0e32e34db34702866fff30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  projectileOwner: {fileID: 7526368585953332153}
+  damage: 1
+  minSpeed: 0.1
+  armed: 1
