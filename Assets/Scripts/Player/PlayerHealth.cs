@@ -40,6 +40,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             if (audioSource != null && deathSound != null)
             {
                 audioSource.PlayOneShot(deathSound);
+                Destroy(gameObject);
             }
         }
     }

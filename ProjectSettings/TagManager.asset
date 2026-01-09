@@ -21,10 +21,10 @@ TagManager:
   - Player
   - Enemy
   - MayGrabbable
+  - EnemyGrabbable
+  - Ground
   - Obstacle
-  - 
-  - 
-  - 
+  - MovableObstacle
   - 
   - 
   - 

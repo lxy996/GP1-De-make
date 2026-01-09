@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7526368585953332153}
   - component: {fileID: 2428616337305756095}
   m_Layer: 10
-  m_Name: Ball
+  m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcf3b21250f3036459ac525f109f0c87, type: 2}
+  - {fileID: 2100000, guid: efa580cd49e7b164e9ddab31139aabc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3961376498851539704}
-  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75980bb01eed534b933bf32dcd466bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  owner: 2
+  owner: 1
   isHeld: 0
   holder: {fileID: 0}
 --- !u!114 &2428616337305756095
