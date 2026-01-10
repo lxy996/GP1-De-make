@@ -23,8 +23,7 @@ GameObject:
   - component: {fileID: 4506282746156181598}
   - component: {fileID: 1637566530419619615}
   - component: {fileID: 7043670999861221907}
-  - component: {fileID: 7039624236370851086}
-  - component: {fileID: 4758035565122557588}
+  - component: {fileID: -908001189742312872}
   m_Layer: 13
   m_Name: Slime
   m_TagString: Untagged
@@ -10159,53 +10158,24 @@ MonoBehaviour:
   repathInterval: 0.2
   aggroDuration: 3
   stopInAttackRange: 0
---- !u!114 &7039624236370851086
+--- !u!114 &-908001189742312872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5288725536093227330}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59197f746c81a1e469cabb75e5437d48, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ee89e7c17719e7448bc38093030bcf5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  sensor: {fileID: 1637566530419619615}
-  firePoint: {fileID: 1396276658083526619}
-  fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
-  shootCooldown: 1.2
-  shootForce: 14
-  aimHeight: 0.2
-  aimTurnSpeed: 12
---- !u!114 &4758035565122557588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288725536093227330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512e39667f1d90d4c9428b338611994a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sensor: {fileID: 1637566530419619615}
-  agent: {fileID: -5276297465191228073}
-  holdPoint: {fileID: 2778539420052892534}
-  grabbableMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  searchRadius: 10
-  pickupDistance: 1.4
-  repathInterval: 0.2
-  itemScanInterval: 0.15
-  throwForce: 16
-  aimHeight: 0.2
-  turnSpeed: 10
-  aimDuration: 0.35
-  recoverDuration: 0.2
-  chasePlayerWhenNoItem: 1
+  m_EditorClassIdentifier: Assembly-CSharp::GrabbableItem
+  type: 5
+  enemyCanPick: 0
+  playerCanPick: 1
+  consumable: 1
+  requirement: 0
+  requirementId: 
 --- !u!1 &5341489287110770754
 GameObject:
   m_ObjectHideFlags: 0

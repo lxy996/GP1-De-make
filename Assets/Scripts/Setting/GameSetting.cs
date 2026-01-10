@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public enum Team
 {
@@ -18,4 +19,13 @@ public enum EnemyState
     SeekBall,
     CarryBall,
     Dead
+}
+
+[Serializable]
+public class SpawnEntry
+{
+    public GameObject prefab;
+    public float weight = 1f;
+    public float yOffset = 0f;
+    public float blockRadius = 0.5f;
 }

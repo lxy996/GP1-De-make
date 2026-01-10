@@ -11,6 +11,17 @@ public class EnemySensor : MonoBehaviour
     public bool HasLineOfSight { get; private set; }
     public bool InAttackRange { get; private set; }
 
+    void Awake()
+    {
+        if (target == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+            }
+        }
+    }
     void Update()
     {
         if (target == null)
