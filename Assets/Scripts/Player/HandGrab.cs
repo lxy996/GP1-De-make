@@ -199,9 +199,6 @@ public class HandGrab : MonoBehaviour
 
         held.transform.SetParent(null, true);
         
-        held.isKinematic = false;
-        held.interpolation = RigidbodyInterpolation.Interpolate;
-        
         var ownerComp = held.GetComponent<ProjectileOwner>();
         if (ownerComp != null)
         {
@@ -211,6 +208,9 @@ public class HandGrab : MonoBehaviour
         }
         var dmgComp = held.GetComponent<ProjectileDamage>();
         if (dmgComp != null) dmgComp.armed = true;
+
+        held.isKinematic = false;
+        held.interpolation = RigidbodyInterpolation.Interpolate;
 
         // Clear the initial velocity
         held.linearVelocity = Vector3.zero;

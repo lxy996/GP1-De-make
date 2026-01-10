@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyFireball : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyFireball : MonoBehaviour
     [Header("Shoot")]
     public float shootCooldown = 1.2f;
     public float shootForce = 14f;
+    public float selfCollisionIgnoreTime = 0.25f;
 
     [Header("Aim")]
     public float aimHeight = 0.2f;
@@ -42,12 +44,12 @@ public class EnemyFireball : MonoBehaviour
     }
     void FaceTarget(Vector3 targetPos)
     {
-        Vector3 direction = targetPos - transform.position;
-        direction.y = 0f;
-        if (direction.sqrMagnitude < 0.0001f) 
+        Vector3 dir = targetPos - transform.position;
+        dir.y = 0f;
+        if (dir.sqrMagnitude < 0.0001f) 
             return;
 
-        Quaternion targetRot = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        Quaternion targetRot = Quaternion.LookRotation(dir.normalized, Vector3.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * aimTurnSpeed);
     }
 
@@ -56,15 +58,6 @@ public class EnemyFireball : MonoBehaviour
         Vector3 aimPoint = sensor.target.position + Vector3.up * aimHeight;
 
         Rigidbody rb = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
-
-        // Avoid fireballs attacking the enemy itself
-        Collider ballCol = rb.GetComponent<Collider>();
-        if (ballCol != null)
-        {
-            Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (var c in colliders)
-                Physics.IgnoreCollision(ballCol, c, true);
-        }
 
         ProjectileOwner owner = rb.GetComponent<ProjectileOwner>();
         if (owner != null)
@@ -78,12 +71,43 @@ public class EnemyFireball : MonoBehaviour
         ProjectileDamage dmg = rb.GetComponent<ProjectileDamage>();
         if (dmg != null) dmg.armed = true;
 
+        rb.isKinematic = false;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
         // Clear the velocity
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        Vector3 direction = (aimPoint - firePoint.position).normalized;
-        rb.AddForce(direction * shootForce, ForceMode.VelocityChange);
+        IgnoreSelfCollision(rb, true);
+        StartCoroutine(RestoreSelfCollision(rb, selfCollisionIgnoreTime));
+
+        Vector3 dir = (aimPoint - firePoint.position).normalized;
+        rb.AddForce(dir * shootForce, ForceMode.VelocityChange);
+    }
+
+    // Avoid enemy being hit by the ball from itself
+    private void IgnoreSelfCollision(Rigidbody rb, bool ignore)
+    {
+        Collider ballCol = rb.GetComponent<Collider>();
+        if (!ballCol)
+            return;
+
+        Collider[] myCols = GetComponentsInChildren<Collider>();
+        foreach (var c in myCols)
+        {
+            if (c && c != ballCol)
+            {
+                Physics.IgnoreCollision(ballCol, c, ignore);
+            }
+
+        }
+    }
+
+    private IEnumerator RestoreSelfCollision(Rigidbody rb, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (rb != null)
+            IgnoreSelfCollision(rb, false);
     }
 
 }

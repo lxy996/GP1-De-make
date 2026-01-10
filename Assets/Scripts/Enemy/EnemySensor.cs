@@ -31,12 +31,12 @@ public class EnemySensor : MonoBehaviour
 
         Vector3 from = transform.position + Vector3.up * 0.8f;
         Vector3 to = target.position + Vector3.up * 0.8f;
-        Vector3 direction = to - from;
+        Vector3 dir = to - from;
 
         bool hitObstacle = Physics.Raycast(
             from,
-            direction.normalized,
-            direction.magnitude,
+            dir.normalized,
+            dir.magnitude,
             obstacleMask,
             QueryTriggerInteraction.Ignore
         );
