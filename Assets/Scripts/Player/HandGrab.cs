@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HandGrab : MonoBehaviour
 {
@@ -153,6 +154,8 @@ public class HandGrab : MonoBehaviour
 
                 grabbed = true;
 
+                HandleSpecialGrabLogic(targetRb);
+
                 TryConvertHeldItem(isLeft);
             }
 
@@ -253,7 +256,18 @@ public class HandGrab : MonoBehaviour
             ownerComp.holder = null;
         }
         var dmgComp = held.GetComponent<ProjectileDamage>();
-        if (dmgComp != null) dmgComp.armed = true;
+        if (dmgComp != null)
+        {
+            dmgComp.armed = true;
+            PlayerRelics relics = GetComponent<PlayerRelics>();
+            if (relics != null && relics.attackMultiplier > 1.0f)
+            {
+                // Increase damage by attackMultiplier
+                dmgComp.damage *= relics.attackMultiplier;
+
+            }
+        }
+            
 
         held.isKinematic = false;
         held.interpolation = RigidbodyInterpolation.Interpolate;
@@ -264,6 +278,12 @@ public class HandGrab : MonoBehaviour
 
         Vector3 dir = cam.transform.forward;
         held.AddForce(dir * throwForce, ForceMode.VelocityChange);
+
+        // To count the number of throw
+        if (GameLevelManager.Instance)
+        {
+            GameLevelManager.Instance.RegisterThrow();
+        }
 
         if (isLeft) 
             leftHeld = null;
@@ -377,8 +397,6 @@ public class HandGrab : MonoBehaviour
         PlayerRelics relics = GetComponent<PlayerRelics>();
         if (relics == null) 
             return;
-        if (relics.bombPrefab == null) 
-            return;
 
         Rigidbody held;
 
@@ -481,4 +499,57 @@ public class HandGrab : MonoBehaviour
         if (isLeft) leftHeld = newItem;
         else rightHeld = newItem;
     }
+
+    public bool TrySpawnItemInRightHand(Rigidbody itemPrefab)
+    {
+        
+        if (rightBusy || rightHeld != null)
+            return false;
+
+        Rigidbody newItem = Instantiate(itemPrefab);
+        newItem.isKinematic = true;
+        newItem.interpolation = RigidbodyInterpolation.None;
+
+        newItem.transform.SetParent(rightHoldPoint, false);
+        newItem.transform.localPosition = Vector3.zero;
+        newItem.transform.localRotation = Quaternion.identity;
+
+        ProjectileOwner ownerComp = newItem.GetComponent<ProjectileOwner>();
+        if (ownerComp != null)
+        {
+            ownerComp.owner = Team.Player;
+            ownerComp.isHeld = true;
+            ownerComp.holder = rightHoldPoint;
+        }
+
+        ProjectileDamage dmgComp = newItem.GetComponent<ProjectileDamage>();
+        if (dmgComp != null) dmgComp.armed = false;
+
+        rightHeld = newItem;
+
+        return true;
+    }
+
+    private void HandleSpecialGrabLogic(Rigidbody rb)
+    {
+        GrabbableItem item = rb.GetComponent<GrabbableItem>();
+        if (item == null) 
+            return;
+
+        // If the item is slime
+        if (item.type == GrabbableType.Slime) 
+        {
+            // Turn off the ai of slime
+            var navChase = rb.GetComponent<EnemyNavChase>();
+            if (navChase != null) navChase.enabled = false;
+
+            var touchDamage = rb.GetComponent<EnemyTouchDamage>();
+            if (touchDamage != null) touchDamage.enabled = false;
+
+            var agent = rb.GetComponent<NavMeshAgent>();
+            if (agent != null) agent.enabled = false;
+
+        }
+    }
+
 }

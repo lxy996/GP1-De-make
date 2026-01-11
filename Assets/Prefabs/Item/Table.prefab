@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 643279359685551178}
   - component: {fileID: 4409728425326365681}
   - component: {fileID: 8688173280355904381}
+  - component: {fileID: 979740499105934561}
+  - component: {fileID: 725934443639330668}
   - component: {fileID: 2538276546407483463}
   m_Layer: 18
   m_Name: Table
@@ -32,13 +34,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8460184354610680493}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000042146848, y: 0.000000042146848, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.941, y: -1.88, z: -1.829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &5784767633494608220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,7 +1103,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5692
+  m_VersionIndex: 5701
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1252,6 +1254,37 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.148, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &979740499105934561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460184354610680493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ab6d2ef0e32e34db34702866fff30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
+  projectileOwner: {fileID: 725934443639330668}
+  damage: 1
+  minSpeed: 0.1
+  armed: 1
+--- !u!114 &725934443639330668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460184354610680493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75980bb01eed534b933bf32dcd466bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileOwner
+  owner: 2
+  isHeld: 0
+  holder: {fileID: 0}
 --- !u!114 &2538276546407483463
 MonoBehaviour:
   m_ObjectHideFlags: 0

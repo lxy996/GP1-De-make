@@ -23,7 +23,10 @@ GameObject:
   - component: {fileID: 4506282746156181598}
   - component: {fileID: 1637566530419619615}
   - component: {fileID: 7043670999861221907}
+  - component: {fileID: 3494908463664140994}
+  - component: {fileID: 2473920816549166855}
   - component: {fileID: -908001189742312872}
+  - component: {fileID: 5660451659500192017}
   m_Layer: 13
   m_Name: Slime
   m_TagString: Untagged
@@ -10158,6 +10161,37 @@ MonoBehaviour:
   repathInterval: 0.2
   aggroDuration: 3
   stopInAttackRange: 0
+--- !u!114 &3494908463664140994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75980bb01eed534b933bf32dcd466bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileOwner
+  owner: 2
+  isHeld: 0
+  holder: {fileID: 0}
+--- !u!114 &2473920816549166855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ab6d2ef0e32e34db34702866fff30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
+  projectileOwner: {fileID: 3494908463664140994}
+  damage: 1
+  minSpeed: 0.1
+  armed: 1
 --- !u!114 &-908001189742312872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10176,6 +10210,21 @@ MonoBehaviour:
   consumable: 1
   requirement: 0
   requirementId: 
+--- !u!114 &5660451659500192017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0306abc59e04d9845ad3aefff431ad98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakAfterCollision
+  breakVfx: {fileID: 0}
+  breakSfx: {fileID: 0}
+  audioSource: {fileID: 125830928248304221}
 --- !u!1 &5341489287110770754
 GameObject:
   m_ObjectHideFlags: 0

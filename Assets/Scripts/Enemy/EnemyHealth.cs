@@ -2,22 +2,26 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+
     public float maxHP = 3f;
     public float invincibilityDuration = 0.08f;
 
     public float currentHP;
-    private float lastHit;
+    protected float lastHit;
 
-    private EnemyFeedback feedback;
+    public int goldReward = 1;
 
-    void Awake()
+    protected EnemyFeedback feedback;
+
+
+    protected virtual void Awake()
     {
         currentHP = maxHP;
         feedback = GetComponent<EnemyFeedback>();
         lastHit = -999f;
     }
 
-    public void TakeDamage(float damageAmount, Vector3 hitPoint, Vector3 hitForce, GameObject damageSource)
+    public virtual void TakeDamage(float damageAmount, Vector3 hitPoint, Vector3 hitForce, GameObject damageSource)
     {
         if (Time.time - lastHit < invincibilityDuration) 
             return;
@@ -30,16 +34,30 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             feedback.PlayHit();
         }
 
+        OnDamageTaken(damageAmount);
+
         if (currentHP <= 0f)
         {
-            if (feedback != null)
-            {
-                feedback.PlayDeath();
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Die();
         }
+    }
+    protected virtual void OnDamageTaken(float damage) { }
+
+    // To count the number of kills
+    protected virtual void Die()
+    {
+        if (feedback != null) feedback.PlayDeath();
+
+        
+        if (GameLevelManager.Instance)
+        {
+           
+            GameLevelManager.Instance.AddGold(goldReward);
+            GameLevelManager.Instance.RegisterKill();
+
+        }
+            
+
+        Destroy(gameObject);
     }
 }

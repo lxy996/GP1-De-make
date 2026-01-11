@@ -1,64 +1,36 @@
 using UnityEngine;
 
-public class BreakableDoor : MonoBehaviour, IDamageable
+public class BreakableDoor : EnemyHealth
 {
-    [Header("HP")]
-    public float maxHP = 1f;
-    public float invincibilityDuration = 1.0f;
+    [Header("Breakable Door Settings")]
+    public GameObject fracturedPrefab;
+    public float explosionForce = 10f;
 
     [Header("Feedback")]
     public AudioSource audioSource;
     public AudioClip hitSound;
     public AudioClip deathSound;
+    public GameObject breakVfx;
 
-    public float currentHP;
-    private float lastHit;
-    public bool requireKey = false;
-    void Awake()
+    protected override void Die()
     {
-        currentHP = maxHP;
-        lastHit = -999f;
-    }
-    public void TakeDamage(float damageAmount, Vector3 hitPoint, Vector3 hitForce, GameObject damageSource)
-    {
-        if (Time.time - lastHit < invincibilityDuration)
-            return;
-
-        if (requireKey == true)
+        
+        if (fracturedPrefab != null)
         {
-            bool isKey = false;
+            GameObject debris = Instantiate(fracturedPrefab, transform.position, transform.rotation);
 
-            if (damageSource != null)
+            Rigidbody[] rbs = debris.GetComponentsInChildren<Rigidbody>();
+            foreach (var rb in rbs)
             {
-                GrabbableItem g = damageSource.GetComponent<GrabbableItem>();
-                if (g != null && g.type == GrabbableType.Key)
-                    isKey = true;
+                
+                rb.AddExplosionForce(explosionForce * 10f, transform.position, 2f);
             }
 
-            if (isKey == false)
-                return;
+            Destroy(debris, 5f);
         }
 
-        lastHit = Time.time;
-        currentHP -= damageAmount;
+        if (feedback != null) feedback.PlayDeath();
 
-        if (audioSource != null && hitSound != null)
-        {
-            audioSource.PlayOneShot(hitSound);
-        }
-
-        // Death Logic
-        if (currentHP <= 0f)
-        {
-            if (audioSource != null && deathSound != null)
-            {
-                audioSource.PlayOneShot(deathSound);
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
+        Destroy(gameObject);
     }
 }

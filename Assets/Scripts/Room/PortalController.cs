@@ -2,15 +2,35 @@ using UnityEngine;
 
 public class PortalController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject visualEffect;
+
+    private bool isOpen = false;
+
     void Start()
     {
         
+        if (visualEffect) visualEffect.SetActive(false);
+        GetComponent<Collider>().enabled = false; 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Open()
     {
+        if (isOpen) 
+            return;
+        isOpen = true;
+
+        if (visualEffect) visualEffect.SetActive(true);
+        GetComponent<Collider>().enabled = true; 
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            
+            GameLevelManager.Instance.FinishLevel();
+
+        }
     }
 }
