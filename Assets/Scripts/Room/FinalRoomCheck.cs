@@ -50,8 +50,8 @@ public class FinalRoomCheck : MonoBehaviour
     {
         portalOpened = true;
         
-        if (portal != null) 
-            portal.Open();
+        //if (portal != null) 
+          //  portal.Open();
     }
     private bool CheckEnemies()
     {

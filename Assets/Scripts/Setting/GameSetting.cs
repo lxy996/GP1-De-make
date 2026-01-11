@@ -12,14 +12,12 @@ public interface IDamageable
 
 }
 
-public enum EnemyState
+public interface IHandUsable
 {
-    ChasePlayer,
-    Attack,
-    SeekBall,
-    CarryBall,
-    Dead
+    // Return true means that the item has been consumed, and HandGrab should clear the holding data
+    bool Use(HandGrab grabber, bool isLeftHand);
 }
+
 
 [Serializable]
 public class SpawnEntry

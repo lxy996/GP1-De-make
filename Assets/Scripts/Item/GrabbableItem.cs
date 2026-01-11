@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public enum GrabbableType { Ball, Rock, Bottle, Book, Bomb, Slime, Furniture }
+public enum GrabbableType { Ball, Rock, Bottle, Book, Bomb, Slime, Furniture, Key, Potion, Relic }
 public class GrabbableItem : MonoBehaviour
 {
     public GrabbableType type;

@@ -54,8 +54,8 @@ public class HandGrab : MonoBehaviour
             {
                 if (leftHeld == null) 
                     StartCoroutine(GrabRoutine(true));
-                else 
-                    Throw(true);
+                else
+                    UseOrThrow(true);
             }
         }
 
@@ -66,7 +66,7 @@ public class HandGrab : MonoBehaviour
                 if (rightHeld == null) 
                     StartCoroutine(GrabRoutine(false));
                 else 
-                    Throw(false);
+                    UseOrThrow(false);
             }
         }
     }
@@ -100,6 +100,13 @@ public class HandGrab : MonoBehaviour
         // === 1. Detect the target to be grabbed ===
         if (FindBestTarget(out Rigidbody targetRb, out Vector3 targetWorld))
         {
+            if (!CanPlayerGrab(targetRb))
+            {
+                end.localPosition = originLocal;
+                SetBusy(isLeft, false);
+                yield break;
+            }
+
             lockOwner = targetRb.GetComponent<ProjectileOwner>();
             if (lockOwner != null)
             {
@@ -145,6 +152,8 @@ public class HandGrab : MonoBehaviour
                 else rightHeld = targetRb;
 
                 grabbed = true;
+
+                TryConvertHeldItem(isLeft);
             }
 
             // === 4. Retract ===
@@ -181,6 +190,43 @@ public class HandGrab : MonoBehaviour
         end.localPosition = originLocal;
         SetBusy(isLeft, false);
     }
+
+    void UseOrThrow(bool isLeft)
+    {
+        Rigidbody held;
+
+        if (isLeft)
+        {
+            held = leftHeld;
+        }
+        else
+        {
+            held = rightHeld;
+        }
+
+        if (held == null)
+            return;
+
+        // Firstly, determine whether it can be used
+        IHandUsable usable = held.GetComponent<IHandUsable>();
+        if (usable != null)
+        {
+            bool used = usable.Use(this, isLeft);
+            if (used)
+            {
+                // if used the item, clear the held
+                if (isLeft) 
+                    leftHeld = null;
+                else 
+                    rightHeld = null;
+
+                return;
+            }
+        }
+
+        Throw(isLeft);
+    }
+
     void Throw(bool isLeft)
     {
         Rigidbody held;
@@ -302,5 +348,137 @@ public class HandGrab : MonoBehaviour
         }
         t.localPosition = b;
     }
+    bool CanPlayerGrab(Rigidbody rb)
+    {
+        GrabbableItem grab = rb.GetComponent<GrabbableItem>();
+        if (grab == null) 
+            return false;
 
+        if (!grab.playerCanPick) 
+            return false;
+
+        // Furniture: need the relic that allow player to grab furniture
+        if (grab.requirement == GrabbableItem.PickupRequirement.RequiresRelic)
+        {
+            PlayerRelics relic = GetComponent<PlayerRelics>();
+            if (relic == null) 
+                return false;
+
+            
+            if (!relic.canPickFurniture) 
+                return false;
+        }
+
+        return true;
+    }
+
+    private void TryConvertHeldItem(bool isLeft)
+    {
+        PlayerRelics relics = GetComponent<PlayerRelics>();
+        if (relics == null) 
+            return;
+        if (relics.bombPrefab == null) 
+            return;
+
+        Rigidbody held;
+
+        if (isLeft)
+        {
+            held = leftHeld;
+        }
+        else
+        {
+            held = rightHeld;
+        }
+
+        if (held == null) 
+            return;
+
+        GrabbableItem item = held.GetComponent<GrabbableItem>();
+        if (item == null) 
+            return;
+
+        // Only these kinds of items can be converted
+        bool canConvert =
+            item.type == GrabbableType.Ball ||
+            item.type == GrabbableType.Rock ||
+            item.type == GrabbableType.Slime ||
+            item.type == GrabbableType.Bottle ||
+            item.type == GrabbableType.Book;
+
+        if (canConvert == false) 
+            return;
+
+        // These kinds of items cannot be converted
+        if (item.type == GrabbableType.Furniture) 
+            return;
+        if (item.type == GrabbableType.Potion) 
+            return;
+        if (item.type == GrabbableType.Key) 
+            return;
+        if (item.type == GrabbableType.Relic) 
+            return;
+
+        // Try to convert to bomb
+        if (TryTriggerRelic(isLeft, held, relics.convertToBombChance, relics.bombPrefab))
+            return;
+        // Try to convert to potion
+        if (TryTriggerRelic(isLeft, held, relics.convertToPotionChance, relics.potionPrefab))
+            return;
+
+    }
+    private bool TryTriggerRelic(bool isLeft, Rigidbody currentHeld, float chance, Rigidbody targetPrefab)
+    {
+        if (targetPrefab == null || chance <= 0f) 
+            return false;
+
+        float roll = Random.value;
+        if (roll <= chance) 
+        {
+            ReplaceHeldItem(isLeft, currentHeld, targetPrefab);
+            return true;
+        }
+        return false;
+    }
+
+    private void ReplaceHeldItem(bool isLeft, Rigidbody oldItem, Rigidbody newPrefab)
+    {
+        Transform holdPoint;
+
+        if (isLeft)
+        {
+            holdPoint = leftHoldPoint;
+        }
+        else
+        {
+            holdPoint = rightHoldPoint;
+        }
+
+        if (oldItem != null) 
+            Destroy(oldItem.gameObject);
+
+        // Instantiate a new item in the hand
+        Rigidbody newItem = Instantiate(newPrefab);
+
+        newItem.isKinematic = true;
+        newItem.interpolation = RigidbodyInterpolation.None;
+
+        newItem.transform.SetParent(holdPoint, false);
+        newItem.transform.localPosition = Vector3.zero;
+        newItem.transform.localRotation = Quaternion.identity;
+
+        ProjectileOwner ownerComp = newItem.GetComponent<ProjectileOwner>();
+        if (ownerComp != null)
+        {
+            ownerComp.owner = Team.Player;
+            ownerComp.isHeld = true;
+            ownerComp.holder = holdPoint;
+        }
+
+        ProjectileDamage dmgComp = newItem.GetComponent<ProjectileDamage>();
+        if (dmgComp != null) dmgComp.armed = false;
+
+        if (isLeft) leftHeld = newItem;
+        else rightHeld = newItem;
+    }
 }

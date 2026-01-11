@@ -10140,7 +10140,7 @@ MonoBehaviour:
   attackRange: 6
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 395264
+    m_Bits: 411648
 --- !u!114 &7043670999861221907
 MonoBehaviour:
   m_ObjectHideFlags: 0

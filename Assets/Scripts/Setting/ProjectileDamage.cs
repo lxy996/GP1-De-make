@@ -8,7 +8,7 @@ public class ProjectileDamage : MonoBehaviour
 
     [Header("Damage")]
     public float damage = 1f;
-    public float minSpeed = 4f;    // No damage will be caused at speeds below this.
+    public float minSpeed = 0.1f;    // No damage will be caused at speeds below this.
 
     [Header("State")]
     public bool armed = true;      // Holding in hand = false, throwing/launching = true

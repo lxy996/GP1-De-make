@@ -10141,7 +10141,7 @@ MonoBehaviour:
   attackRange: 6
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 395264
+    m_Bits: 411648
 --- !u!114 &7043670999861221907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10176,6 +10176,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
   shootCooldown: 1.2
   shootForce: 14
+  selfCollisionIgnoreTime: 0.25
   aimHeight: 0.2
   aimTurnSpeed: 12
 --- !u!114 &4758035565122557588
@@ -10203,6 +10204,7 @@ MonoBehaviour:
   throwForce: 16
   aimHeight: 0.2
   turnSpeed: 10
+  selfCollisionIgnoreTime: 0.3
   aimDuration: 0.35
   recoverDuration: 0.2
   chasePlayerWhenNoItem: 1

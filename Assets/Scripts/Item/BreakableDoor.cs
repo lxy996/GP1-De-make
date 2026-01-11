@@ -13,6 +13,7 @@ public class BreakableDoor : MonoBehaviour, IDamageable
 
     public float currentHP;
     private float lastHit;
+    public bool requireKey = false;
     void Awake()
     {
         currentHP = maxHP;
@@ -22,6 +23,21 @@ public class BreakableDoor : MonoBehaviour, IDamageable
     {
         if (Time.time - lastHit < invincibilityDuration)
             return;
+
+        if (requireKey == true)
+        {
+            bool isKey = false;
+
+            if (damageSource != null)
+            {
+                GrabbableItem g = damageSource.GetComponent<GrabbableItem>();
+                if (g != null && g.type == GrabbableType.Key)
+                    isKey = true;
+            }
+
+            if (isKey == false)
+                return;
+        }
 
         lastHit = Time.time;
         currentHP -= damageAmount;
