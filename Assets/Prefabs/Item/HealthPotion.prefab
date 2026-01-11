@@ -15294,6 +15294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cd256e583e58f46b93aef9cb148255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  audioSource: {fileID: 872785240772257023}
+  cureVfx: {fileID: 0}
+  cureSfx: {fileID: 0}
   destroyOnUse: 1
 --- !u!114 &7263063778669563580
 MonoBehaviour:
@@ -15310,6 +15313,7 @@ MonoBehaviour:
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 872785240772257023}
+  damage: {fileID: 0}
 --- !u!114 &5604349901334341576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15343,7 +15347,7 @@ MonoBehaviour:
   projectileOwner: {fileID: 3315972654020475040}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0
 --- !u!114 &3315972654020475040
 MonoBehaviour:
   m_ObjectHideFlags: 0

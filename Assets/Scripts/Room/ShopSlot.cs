@@ -102,13 +102,10 @@ public class ShopSlot : MonoBehaviour, IInteractable
     }
 
 
-
-
-    // --- 实现 IInteractable 接口 ---
-
     public string GetInteractPrompt()
     {
-        if (isSold) return "";
+        if (isSold) 
+            return "";
         return $"[E] Buy ({price} G)";
     }
 

@@ -7,14 +7,22 @@ public class GameLevelManager : MonoBehaviour
 {
     public static GameLevelManager Instance;
 
+    public GameUIManager gameUIManager;
+
     [Header("Level Settings")]
     public List<GameObject> levelPrefabs; 
     public Transform player;              
     public Transform levelOrigin;         
 
     [Header("UI References")]
-    public GameObject summaryPanel;       
-    public UnityEngine.UI.Text summaryText;
+    public GameObject summaryPanel;
+    public TextMeshProUGUI title;
+    public TextMeshProUGUI time;
+    public TextMeshProUGUI thrown;
+    public TextMeshProUGUI kill;
+    public TextMeshProUGUI timeAmount;
+    public TextMeshProUGUI thrownAmount;
+    public TextMeshProUGUI killAmount;
 
     [Header("Economy")]
     public int currentGold = 0;
@@ -25,6 +33,7 @@ public class GameLevelManager : MonoBehaviour
     public GameStats currentStats = new GameStats();
 
     private GameObject currentLevelInstance;
+
 
     void Awake()
     {
@@ -42,6 +51,7 @@ public class GameLevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        gameUIManager.LockCursor();
         StartCoroutine(LevelTransitionRoutine());
     }
 
@@ -97,20 +107,23 @@ public class GameLevelManager : MonoBehaviour
     {
         currentStats.endTime = Time.time;
         ShowSummary();
+        gameUIManager.UnlockCursor();
     }
 
     void ShowSummary()
     {
-        if (summaryPanel != null && summaryText != null)
+        if (summaryPanel != null)
         {
             summaryPanel.SetActive(true);
-            summaryText.text = $"LEVEL {currentLevelIndex} COMPLETE!\n\n" +
-                               $"Time taken: {currentStats.Duration:F2} s\n" +
-                               $"Items thrown: {currentStats.throwCount}\n" +
-                               $"Monsters killed: {currentStats.killCount}";
+            title.text = $"Level {currentLevelIndex} cleared!";
+            time.text = $"Time  taken:";
+            timeAmount.text = $"{currentStats.Duration:F2}s";
+            thrown.text = $"Items  thrown:";
+            thrownAmount.text = $"{currentStats.throwCount}";
+            kill.text = $"Monsters  killed:";
+            killAmount.text = $"{currentStats.killCount}";
 
-            
-            Invoke(nameof(LoadNextLevel), 3.0f);
+
         }
         else
         {

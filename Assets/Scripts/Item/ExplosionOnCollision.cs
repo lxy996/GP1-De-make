@@ -10,7 +10,7 @@ public class ExplosionOnCollision : MonoBehaviour
     public ProjectileOwner projectileOwner;
 
     [Header("Settings")]
-    public float delay = 3f;
+    public float delay = 10f;
     public float radius = 3f;
     public float damage = 2f;
     public LayerMask damageMask;

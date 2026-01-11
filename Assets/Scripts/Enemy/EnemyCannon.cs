@@ -6,7 +6,7 @@ public class EnemyCannon : MonoBehaviour
     [Header("References")]
     public EnemySensor sensor;              
     public Transform bombPoint;             
-    public Rigidbody cannoBombPrefab;
+    public Rigidbody cannonBombPrefab;
     public Transform yawPivot;   // Horizontal axis
     public Transform pitchPivot; // Pitch axis
 
@@ -32,7 +32,7 @@ public class EnemyCannon : MonoBehaviour
 
     void Update()
     {
-        if (!sensor || !sensor.target || !bombPoint || !cannoBombPrefab) 
+        if (!sensor || !sensor.target || !bombPoint || !cannonBombPrefab) 
             return;
 
         bool canShoot = sensor.InAttackRange && sensor.HasLineOfSight;
@@ -92,7 +92,7 @@ public class EnemyCannon : MonoBehaviour
     void ShootBomb(Vector3 v0)
     {
 
-        Rigidbody rb = Instantiate(cannoBombPrefab, bombPoint.position, Quaternion.identity);
+        Rigidbody rb = Instantiate(cannonBombPrefab, bombPoint.position, Quaternion.identity);
 
         ProjectileOwner owner = rb.GetComponent<ProjectileOwner>();
         if (owner != null)

@@ -173,7 +173,7 @@ MonoBehaviour:
   projectileOwner: {fileID: 7526368585953332153}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0
 --- !u!114 &524842282091299362
 MonoBehaviour:
   m_ObjectHideFlags: 0

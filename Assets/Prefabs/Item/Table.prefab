@@ -1269,7 +1269,7 @@ MonoBehaviour:
   projectileOwner: {fileID: 725934443639330668}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0
 --- !u!114 &725934443639330668
 MonoBehaviour:
   m_ObjectHideFlags: 0

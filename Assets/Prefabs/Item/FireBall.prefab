@@ -272,7 +272,7 @@ MonoBehaviour:
   projectileOwner: {fileID: 7526368585953332153}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0
 --- !u!114 &-798936142555383610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +306,4 @@ MonoBehaviour:
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 6734635242196056148}
+  damage: {fileID: 0}

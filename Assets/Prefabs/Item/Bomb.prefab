@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3055123740896929693}
   - component: {fileID: 2219359760083373568}
   - component: {fileID: 8441524622605986333}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2464,7 +2464,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &3957722337544675180
@@ -2481,7 +2481,7 @@ GameObject:
   - component: {fileID: 8740041481087070504}
   - component: {fileID: 3387732552715443349}
   - component: {fileID: 7579453373760313939}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36562,7 +36562,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &7543050179462648353
@@ -36579,7 +36579,7 @@ GameObject:
   - component: {fileID: 501469626683444598}
   - component: {fileID: 1185612721944462005}
   - component: {fileID: 499696132218670506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40357,7 +40357,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &9169356246063164132
@@ -40375,7 +40375,7 @@ GameObject:
   - component: {fileID: 3096846967259080889}
   - component: {fileID: 7597444746172021225}
   - component: {fileID: 1987096186007919192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40539,12 +40539,13 @@ MonoBehaviour:
   vfx: {fileID: 0}
   sfx: {fileID: 0}
   audioSource: {fileID: 3737094248658211454}
+  projectileOwner: {fileID: 0}
+  delay: 3
   radius: 3
   damage: 2
   damageMask:
     serializedVersion: 2
     m_Bits: 0
-  minArmedTime: 0.05
 --- !u!114 &3096846967259080889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40560,7 +40561,7 @@ MonoBehaviour:
   type: 4
   enemyCanPick: 0
   playerCanPick: 1
-  consumable: 1
+  consumable: 0
   requirement: 0
   requirementId: 
 --- !u!114 &7597444746172021225
@@ -40578,7 +40579,7 @@ MonoBehaviour:
   projectileOwner: {fileID: 1987096186007919192}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0
 --- !u!114 &1987096186007919192
 MonoBehaviour:
   m_ObjectHideFlags: 0

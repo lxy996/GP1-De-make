@@ -5528,4 +5528,4 @@ MonoBehaviour:
   projectileOwner: {fileID: 5935942238292981485}
   damage: 1
   minSpeed: 0.1
-  armed: 1
+  armed: 0

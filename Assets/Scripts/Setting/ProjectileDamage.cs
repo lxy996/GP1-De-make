@@ -11,7 +11,7 @@ public class ProjectileDamage : MonoBehaviour
     public float minSpeed = 0.1f;    // No damage will be caused at speeds below this.
 
     [Header("State")]
-    public bool armed = true;      // Holding in hand = false, throwing/launching = true
+    public bool armed = false;      // Holding in hand = false, throwing/launching = true
 
     void Awake()
     {
