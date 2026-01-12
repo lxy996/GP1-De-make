@@ -5952,7 +5952,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2521
+  m_VersionIndex: 2524
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11779,7 +11779,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2521
+  m_VersionIndex: 2524
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -12015,6 +12015,7 @@ GameObject:
   - component: {fileID: 125830928248304221}
   - component: {fileID: -5276297465191228073}
   - component: {fileID: 97425097427211663}
+  - component: {fileID: 496589284425629967}
   - component: {fileID: 6684484298178050752}
   - component: {fileID: 5945496976979119685}
   - component: {fileID: 4905970856558846369}
@@ -12026,6 +12027,7 @@ GameObject:
   - component: {fileID: -908001189742312872}
   - component: {fileID: 5660451659500192017}
   - component: {fileID: 6520986833555256442}
+  - component: {fileID: 7640906804189386508}
   m_Layer: 15
   m_Name: Slime
   m_TagString: Untagged
@@ -12214,12 +12216,33 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.47, y: 0.35, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &496589284425629967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.35, z: 0.5}
-  m_Center: {x: -0.03, y: 0, z: 0}
+  m_Size: {x: 0.47, y: 0.35, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6684484298178050752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12248,13 +12271,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076424a64cee7414fbf59e6254388799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  animator: {fileID: 7640906804189386508}
   rigidBody: {fileID: 4811643348748630873}
   audioSource: {fileID: 125830928248304221}
   hitTriggerName: Hit
   deathTriggerName: Die
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
+  deathEffect: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
+  deathDelayTime: 2
 --- !u!114 &4905970856558846369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12296,7 +12321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
   detectRange: 30
-  attackRange: 1.5
+  attackRange: 0.5
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
@@ -12345,9 +12370,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
   projectileOwner: {fileID: 3494908463664140994}
+  collisionEffect: {fileID: 8830799813408216968, guid: 901fedc19d2ff3f499edc761c1449683, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 0}
   damage: 1
   minSpeed: 0.1
   armed: 0
+  collisionTriggerName: 
 --- !u!114 &-908001189742312872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12378,7 +12407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0306abc59e04d9845ad3aefff431ad98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakAfterCollision
-  breakVfx: {fileID: 0}
+  breakVfx: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 125830928248304221}
   damage: {fileID: 2473920816549166855}
@@ -12400,6 +12429,28 @@ MonoBehaviour:
   audioSource: {fileID: 125830928248304221}
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
+--- !u!95 &7640906804189386508
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 19cfbe8afcec5cf4bb9712191271ba59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5341489287110770754
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7526368585953332153}
   - component: {fileID: 2428616337305756095}
   - component: {fileID: 524842282091299362}
+  - component: {fileID: 6553348215630259343}
   m_Layer: 10
   m_Name: Ball
   m_TagString: Untagged
@@ -171,9 +172,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   projectileOwner: {fileID: 7526368585953332153}
+  collisionEffect: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 6553348215630259343}
   damage: 1
-  minSpeed: 0.1
+  minSpeed: 0.5
   armed: 0
+  collisionTriggerName: Collision
 --- !u!114 &524842282091299362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +197,25 @@ MonoBehaviour:
   consumable: 0
   requirement: 0
   requirementId: 
+--- !u!95 &6553348215630259343
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961376498851539704}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 486671afc361abe4a9eabbab4b2da467, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

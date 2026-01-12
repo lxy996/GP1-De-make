@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8219092882587693571}
   - component: {fileID: 1364268181027804548}
   - component: {fileID: 5102047451023784815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9956,10 +9956,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab6d2ef0e32e34db34702866fff30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectileOwner: {fileID: 0}
+  projectileOwner: {fileID: 5024233118444190245}
+  collisionEffect: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 0}
   damage: 1
-  minSpeed: 0.1
+  minSpeed: 0.5
   armed: 0
+  collisionTriggerName: 
 --- !u!114 &1364268181027804548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9990,7 +9994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0306abc59e04d9845ad3aefff431ad98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakAfterCollision
-  breakVfx: {fileID: 0}
+  breakVfx: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 5998514626306901677}
   damage: {fileID: 8219092882587693571}

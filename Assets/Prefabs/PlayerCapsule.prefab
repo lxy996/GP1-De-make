@@ -542,12 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69800f2807467f24a95b8c7a51f3755e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 2
+  maxHP: 6
   invincibilityDuration: 1
   audioSource: {fileID: 4259510145757992015}
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
   healthSound: {fileID: 0}
+  UIAnimator: {fileID: 0}
   currentHP: 0
 --- !u!82 &4259510145757992015
 AudioSource:
@@ -689,6 +690,7 @@ MonoBehaviour:
     m_Bits: 393216
   interactKey: 101
   promptText: {fileID: 0}
+  tipHasShown: 0
 --- !u!1 &3354016605386451152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,7 +1681,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3464
+  m_VersionIndex: 3485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2707,7 +2709,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3716
+  m_VersionIndex: 3737
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

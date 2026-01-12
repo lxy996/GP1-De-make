@@ -11644,7 +11644,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 118
+  m_VersionIndex: 121
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -23812,7 +23812,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 154
+  m_VersionIndex: 157
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -23857,6 +23857,7 @@ GameObject:
   - component: {fileID: 4506282746156181598}
   - component: {fileID: 1637566530419619615}
   - component: {fileID: 7043670999861221907}
+  - component: {fileID: 7715645550178276226}
   - component: {fileID: 1943134263084324379}
   - component: {fileID: 4435796095052494203}
   - component: {fileID: 1290406784569258997}
@@ -24020,7 +24021,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5288725536093227330}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -24061,13 +24062,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076424a64cee7414fbf59e6254388799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  animator: {fileID: 1290406784569258997}
   rigidBody: {fileID: 4811643348748630873}
   audioSource: {fileID: 125830928248304221}
   hitTriggerName: Hit
   deathTriggerName: Die
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
+  deathEffect: {fileID: 0}
+  deathDelayTime: 2
 --- !u!114 &4905970856558846369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24109,7 +24112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
   detectRange: 30
-  attackRange: 1.5
+  attackRange: 0.5
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
@@ -24130,6 +24133,27 @@ MonoBehaviour:
   repathInterval: 0.2
   aggroDuration: 3
   stopInAttackRange: 1
+--- !u!65 &7715645550178276226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.38, z: 0.3}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!65 &1943134263084324379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24149,8 +24173,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2, y: 0.38, z: 0.45}
-  m_Center: {x: 0, y: 0.45, z: 0.05}
+  m_Size: {x: 1, y: 0.38, z: 0.3}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!114 &4435796095052494203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61279,7 +61303,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1521
+  m_VersionIndex: 1524
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

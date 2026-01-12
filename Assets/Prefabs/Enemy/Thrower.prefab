@@ -13086,7 +13086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5929032846007919678
 Transform:
   m_ObjectHideFlags: 0
@@ -13095,7 +13095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4992567886338322561}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0011960816, y: -0, z: -0, w: 0.9999993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.15, y: 1, z: 1.1499997}
   m_ConstrainProportionsScale: 0
@@ -14636,7 +14636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5593776571100328541}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0011960816, y: -0, z: -0, w: 0.9999993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.14894007, y: 0.17814803, z: 0.55495524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16170,11 +16170,9 @@ GameObject:
   - component: {fileID: 7693404289401063833}
   - component: {fileID: 9168962886313948925}
   - component: {fileID: 6682794206357373170}
-  - component: {fileID: 2655959051945992373}
-  - component: {fileID: 4099782363014072508}
   - component: {fileID: 7027613209854054552}
   - component: {fileID: 3258784897336517796}
-  - component: {fileID: 906840751752135669}
+  - component: {fileID: 5284595656570185866}
   m_Layer: 13
   m_Name: Thrower
   m_TagString: Untagged
@@ -16378,13 +16376,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076424a64cee7414fbf59e6254388799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  animator: {fileID: 5284595656570185866}
   rigidBody: {fileID: 4526360708830130184}
   audioSource: {fileID: 3344222757256223844}
   hitTriggerName: Hit
   deathTriggerName: Die
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
+  deathEffect: {fileID: 7388905487230597418, guid: da0b04dd048a1fb4abfbe159d57a76cf, type: 3}
+  deathDelayTime: 2
 --- !u!114 &7693404289401063833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16430,43 +16430,6 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
---- !u!114 &2655959051945992373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6457994494325223854}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 396363000882f8f4b98b10b3385bd891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sensor: {fileID: 6682794206357373170}
-  agent: {fileID: 2226210014254966447}
-  repathInterval: 0.2
-  aggroDuration: 3
-  stopInAttackRange: 1
---- !u!114 &4099782363014072508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6457994494325223854}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59197f746c81a1e469cabb75e5437d48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sensor: {fileID: 6682794206357373170}
-  firePoint: {fileID: 8379512461932505210}
-  fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
-  shootCooldown: 1.2
-  shootForce: 20
-  selfCollisionIgnoreTime: 0.25
-  aimHeight: 0.2
-  aimTurnSpeed: 12
 --- !u!114 &7027613209854054552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16488,7 +16451,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   searchRadius: 10
-  pickupDistance: 0.5
+  pickupDistance: 1.5
   repathInterval: 0.2
   itemScanInterval: 0.15
   throwForce: 16
@@ -16516,30 +16479,28 @@ MonoBehaviour:
   audioSource: {fileID: 3344222757256223844}
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
---- !u!114 &906840751752135669
-MonoBehaviour:
+--- !u!95 &5284595656570185866
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457994494325223854}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8062ee23a12080640a7602d491a0a0f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  maxHP: 3
-  invincibilityDuration: 0.08
-  currentHP: 0
-  goldReward: 1
-  crystalParts: []
-  deathEffect: {fileID: 0}
-  audioSource: {fileID: 3344222757256223844}
-  breakSound: {fileID: 0}
-  spawnPointPrefab: {fileID: 7445536247444793680, guid: 52e89c934e6c22445b2916263c6bcc46, type: 3}
-  spawnsPerHit: 4
-  spawnRadius: 5
-  fragmentPrefab: {fileID: 0}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80055ad1ab15b874490d1b8654fd7ac2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6744534367729048383
 GameObject:
   m_ObjectHideFlags: 0

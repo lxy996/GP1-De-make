@@ -7,6 +7,8 @@ public class EnemyFireball : MonoBehaviour
     public EnemySensor sensor;
     public Transform firePoint;
     public Rigidbody fireballPrefab;
+    public GameObject Idle;
+    public GameObject Aim;
 
     [Header("Shoot")]
     public float shootCooldown = 1.2f;
@@ -14,7 +16,7 @@ public class EnemyFireball : MonoBehaviour
     public float selfCollisionIgnoreTime = 0.25f;
 
     [Header("Aim")]
-    public float aimHeight = 0.2f;
+    public float aimHeight = 2.0f;
     public float aimTurnSpeed = 12f;
 
     private float nextShootTime = 0f;
@@ -22,6 +24,11 @@ public class EnemyFireball : MonoBehaviour
     {
         if (sensor == null)
             sensor = GetComponent<EnemySensor>();
+        if(Idle != null && Aim != null)
+        {
+            Idle.SetActive(true);
+            Aim.SetActive(false);
+        }
     }
 
     void Update()
@@ -44,6 +51,7 @@ public class EnemyFireball : MonoBehaviour
     }
     void FaceTarget(Vector3 targetPos)
     {
+        
         Vector3 dir = targetPos - transform.position;
         dir.y = 0f;
         if (dir.sqrMagnitude < 0.0001f) 
@@ -55,6 +63,12 @@ public class EnemyFireball : MonoBehaviour
 
     void Shoot()
     {
+        if (Idle != null && Aim != null)
+        {
+            Idle.SetActive(false);
+            Aim.SetActive(true);
+        }
+
         Vector3 aimPoint = sensor.target.position + Vector3.up * aimHeight;
 
         Rigidbody rb = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
@@ -82,6 +96,12 @@ public class EnemyFireball : MonoBehaviour
 
         Vector3 dir = (aimPoint - firePoint.position).normalized;
         rb.AddForce(dir * shootForce, ForceMode.VelocityChange);
+
+        if (Idle != null && Aim != null)
+        {
+            Idle.SetActive(true);
+            Aim.SetActive(false);
+        }
     }
 
     // Avoid enemy being hit by the ball from itself

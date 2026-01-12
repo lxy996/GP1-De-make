@@ -5526,6 +5526,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
   projectileOwner: {fileID: 5935942238292981485}
+  collisionEffect: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 0}
   damage: 1
-  minSpeed: 0.1
+  minSpeed: 0.5
   armed: 0
+  collisionTriggerName: 

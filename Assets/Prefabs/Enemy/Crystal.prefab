@@ -1050,11 +1050,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_Extents: {x: 2, y: 2.5, z: 2}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.6, y: 2.2, z: -0.3}
   m_TimeToStationary: 0.5
 --- !u!114 &8507370184388611801
 MonoBehaviour:
@@ -1075,6 +1075,8 @@ MonoBehaviour:
   deathTriggerName: Die
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
+  deathEffect: {fileID: 6466970472444941621, guid: 7cc567513d1f62a4ba7fffa5e4e123d3, type: 3}
+  deathDelayTime: 2
 --- !u!114 &3566571809878783978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,7 +1111,8 @@ MonoBehaviour:
   - {fileID: 2183176249365180217}
   - {fileID: 70899741431311372}
   - {fileID: 6313643593774181855}
-  deathEffect: {fileID: 0}
+  breakEffect: {fileID: 6466970472444941621, guid: 7cc567513d1f62a4ba7fffa5e4e123d3, type: 3}
+  spawnEffect: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
   audioSource: {fileID: 4081206006284949720}
   breakSound: {fileID: 0}
   spawnPointPrefab: {fileID: 686178766918763326, guid: aa2d0154a88bbcd499fe464d5cfc11e8, type: 3}
@@ -5060,8 +5063,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5859930469374496561}
   - {fileID: 8598134096517318388}
@@ -5663,7 +5666,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

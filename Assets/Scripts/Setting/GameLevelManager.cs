@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,7 @@ public class GameLevelManager : MonoBehaviour
     public TextMeshProUGUI timeAmount;
     public TextMeshProUGUI thrownAmount;
     public TextMeshProUGUI killAmount;
+    public Button summaryButton;
 
     [Header("Economy")]
     public int currentGold = 0;
@@ -32,6 +34,7 @@ public class GameLevelManager : MonoBehaviour
     [Header("Runtime Data")]
     public int currentLevelIndex = 0;
     public GameStats currentStats = new GameStats();
+    public GameStats totalStats = new GameStats();
 
     private GameObject currentLevelInstance;
 
@@ -47,11 +50,16 @@ public class GameLevelManager : MonoBehaviour
 
     void Start()
     {
-        LoadNextLevel();
+        //LoadNextLevel();
     }
 
     public void LoadNextLevel()
     {
+        if (currentLevelIndex >= 3)
+        {
+            GameFinish(1f, totalStats);
+            return;
+        }
         gameUIManager.LockCursor();
         StartCoroutine(LevelTransitionRoutine());
     }
@@ -107,11 +115,33 @@ public class GameLevelManager : MonoBehaviour
         if (summaryPanel != null) summaryPanel.SetActive(false);
 
     }
+    public bool CanSpawnEnemy(string enemyName)
+    {
+        // First: Don't spawn Cannon, FireMan, Crystal
+        if (currentLevelIndex == 1)
+        {
+            if (enemyName.Contains("Cannon") || enemyName.Contains("FireMan") || enemyName.Contains("Crystal"))
+                return false;
+        }
+        // Second: Don't spawn Cannon
+        else if (currentLevelIndex == 2)
+        {
+            if (enemyName.Contains("Cannon"))
+                return false;
+        }
+        
+
+        return true;
+    }
 
     // After player interact with portal
     public void FinishLevel()
     {
         currentStats.endTime = Time.time;
+
+        totalStats.throwCount += currentStats.throwCount;
+        totalStats.killCount += currentStats.killCount;
+
         ShowSummary();
         gameUIManager.UnlockCursor();
     }
@@ -136,6 +166,49 @@ public class GameLevelManager : MonoBehaviour
 
             LoadNextLevel();
         }
+    }
+
+    public void GameFinish(float type, GameStats totalStats)
+    {
+        totalStats.throwCount += currentStats.throwCount;
+        totalStats.killCount += currentStats.killCount;
+
+        currentStats.endTime = Time.time;
+        gameUIManager.isGameStarted = false;
+        Time.timeScale = 0f;
+
+        gameUIManager.UnlockCursor();
+        gameUIManager.hudPanel.SetActive(false);
+
+        if (type <= 0) // Death
+        {
+            summaryPanel.SetActive(true);
+            title.text = "You Died";
+            time.text = $"Time  taken:";
+            timeAmount.text = $"{currentStats.Duration:F2}s";
+            thrown.text = $"Items  thrown:";
+            thrownAmount.text = $"{totalStats.throwCount}";
+            kill.text = $"Monsters  killed:";
+            killAmount.text = $"{totalStats.killCount}";
+
+            summaryButton.onClick.RemoveAllListeners();
+            summaryButton.onClick.AddListener(gameUIManager.OnBackToMenuButton);
+        }
+        else // Victory
+        {
+            summaryPanel.SetActive(true);
+            title.text = "Victory!";
+            time.text = $"Time  taken:";
+            timeAmount.text = $"{currentStats.Duration:F2}s";
+            thrown.text = $"Items  thrown:";
+            thrownAmount.text = $"{totalStats.throwCount}";
+            kill.text = $"Monsters  killed:";
+            killAmount.text = $"{totalStats.killCount}";
+
+            summaryButton.onClick.RemoveAllListeners();
+            summaryButton.onClick.AddListener(gameUIManager.OnBackToMenuButton);
+        }
+            
     }
     void UpdateGoldUI()
     {

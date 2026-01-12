@@ -1,10 +1,12 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class CrystalEnemy : EnemyHealth
 {
     [Header("Components")]
     public GameObject[] crystalParts; 
-    public GameObject deathEffect;  
+    public GameObject breakEffect;  
+    public GameObject spawnEffect;
     public AudioSource audioSource;
     public AudioClip breakSound;
 
@@ -27,6 +29,10 @@ public class CrystalEnemy : EnemyHealth
             if (crystalParts[partIndex] != null && crystalParts[partIndex].activeSelf)
             {
                 crystalParts[partIndex].SetActive(false);
+
+                GameObject vfx = Instantiate(breakEffect, crystalParts[partIndex].transform.position, Quaternion.identity);
+
+                Destroy(vfx, 5f);
 
                 SpawnFragment(crystalParts[partIndex].transform.position);
 

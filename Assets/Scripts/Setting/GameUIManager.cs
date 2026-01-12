@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using StarterAssets;
+using System.Collections;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class GameUIManager : MonoBehaviour
 
     [Header("HUD Elements")]
     public Slider healthSlider;      
-    public TextMeshProUGUI keyPromptText; 
+    public TextMeshProUGUI keyPromptText;
+    public float tipsDuration = 20f;
 
     [Header("Options")]
     public TextMeshProUGUI sensitivityButtonText;
@@ -26,10 +28,11 @@ public class GameUIManager : MonoBehaviour
     [Header("References")]
     public PlayerHealth playerHealth;
     public FirstPersonController playerController;
+    public PlayerInteractor playerInteractor;
 
     // Game Statue
-    private bool isPaused = false;
-    private bool isGameStarted = false;
+    public bool isPaused = false;
+    public bool isGameStarted = false;
     void Start()
     {
         
@@ -55,6 +58,21 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    IEnumerator ShowTips()
+    {
+        if (keyPromptText)
+        {
+            keyPromptText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(tipsDuration);
+            keyPromptText.gameObject.SetActive(false);
+            playerInteractor.tipHasShown = true;
+        }
+        else
+        {
+            playerInteractor.tipHasShown = true;
+        }
+    }
+
     // Switch between menus
     public void ShowMainMenu()
     {
@@ -73,11 +91,16 @@ public class GameUIManager : MonoBehaviour
     {
         isGameStarted = true;
         isPaused = false;
+        playerInteractor.tipHasShown = false;
         Time.timeScale = 1f;
         LockCursor();
 
+
+        GameLevelManager.Instance.LoadNextLevel();
         if (mainMenuPanel) mainMenuPanel.SetActive(false);
         if (hudPanel) hudPanel.SetActive(true);
+
+        StartCoroutine(ShowTips());
     }
 
     public void PauseGame()
@@ -105,10 +128,15 @@ public class GameUIManager : MonoBehaviour
         ApplySensitivityToPlayer();
     }
 
-    public void OnRestartButton()
+
+    public void OnBackToMenuButton()
     {
+        
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ShowMainMenu();
+
+
     }
 
     // Function of menu
@@ -177,12 +205,20 @@ public class GameUIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
     }
 
     public void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
     }
 
     void UpdateOptionsUI()
@@ -213,4 +249,5 @@ public class GameUIManager : MonoBehaviour
             playerController.RotationSpeed = currentSensLevel * 0.5f;
         }
     }
+
 }

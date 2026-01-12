@@ -1145,7 +1145,7 @@ MonoBehaviour:
   invincibilityDuration: 0.08
   currentHP: 0
   goldReward: 1
-  unlockVfx: {fileID: 0}
+  unlockVfx: {fileID: 6466970472444941621, guid: 7cc567513d1f62a4ba7fffa5e4e123d3, type: 3}
   unlockSound: {fileID: 0}
   audioSource: {fileID: -6101594546867024395}
 --- !u!1 &1926321914567863011

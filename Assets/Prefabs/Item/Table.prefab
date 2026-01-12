@@ -1387,9 +1387,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
   projectileOwner: {fileID: 725934443639330668}
+  collisionEffect: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 0}
   damage: 1
-  minSpeed: 0.1
+  minSpeed: 0.5
   armed: 0
+  collisionTriggerName: 
 --- !u!114 &725934443639330668
 MonoBehaviour:
   m_ObjectHideFlags: 0

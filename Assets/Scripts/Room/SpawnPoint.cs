@@ -18,7 +18,7 @@ public class SpawnPoint : MonoBehaviour
 
     void Awake()
     {
-        baseY = spawnPoint.transform.position.y;
+        if (spawnPoint !=null ) baseY = spawnPoint.transform.position.y;
     }
     // Execute the Spawn task based on the Spawn weight
     public GameObject Spawn(System.Random rng)
@@ -33,6 +33,16 @@ public class SpawnPoint : MonoBehaviour
             SpawnEntry chosen = PickEntryByWeight(rng);
             if (chosen == null || chosen.prefab == null) 
                 return null;
+
+            if (GameLevelManager.Instance != null)
+            {
+                
+                if (!GameLevelManager.Instance.CanSpawnEnemy(chosen.prefab.name))
+                {
+                    
+                    continue;
+                }
+            }
 
             Vector3 spawnPos = new Vector3(
                 transform.position.x,

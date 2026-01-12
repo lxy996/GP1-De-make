@@ -12,15 +12,21 @@ public class PlayerInteractor : MonoBehaviour
     public TMP_Text promptText; // The context under the screen
 
     private Camera cam;
+    public bool tipHasShown;
 
     void Start()
     {
+        tipHasShown = false;
         cam = Camera.main;
     }
 
     void Update()
     {
-        CheckInteraction();
+        if(tipHasShown)
+        {
+            CheckInteraction();
+        }
+        
     }
 
     void CheckInteraction()

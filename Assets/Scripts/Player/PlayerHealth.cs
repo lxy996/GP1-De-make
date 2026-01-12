@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioClip healthSound;
+    public Animator UIAnimator;
 
     public float currentHP;
     private float lastHit;
@@ -33,14 +34,24 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             audioSource.PlayOneShot(hitSound);
         }
-        
+
+        UIAnimator.SetTrigger("Hurt");
         // Death Logic
         if (currentHP <= 0f)
         {
             if (audioSource != null && deathSound != null)
             {
                 audioSource.PlayOneShot(deathSound);
-                Destroy(gameObject);
+                
+                GameLevelManager.Instance.GameFinish(currentHP, GameLevelManager.Instance.totalStats);
+
+                GetComponent<CharacterController>().enabled = false;
+            }
+            else
+            {
+                GameLevelManager.Instance.GameFinish(currentHP, GameLevelManager.Instance.totalStats);
+
+                GetComponent<CharacterController>().enabled = false;
             }
         }
     }
@@ -48,7 +59,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void BeHealth()
     {
         currentHP = maxHP;
-        
+
+        UIAnimator.SetTrigger("Cure");
         if (audioSource != null && healthSound != null)
         {
             audioSource.PlayOneShot(healthSound);

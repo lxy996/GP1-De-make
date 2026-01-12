@@ -1019,7 +1019,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 6787378500406923823}
   - component: {fileID: 9221232924251646693}
   - component: {fileID: 1862908541071573102}
+  - component: {fileID: 6310719627124484775}
   m_Layer: 13
   m_Name: Cannon
   m_TagString: Untagged
@@ -1305,13 +1306,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076424a64cee7414fbf59e6254388799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  animator: {fileID: 6310719627124484775}
   rigidBody: {fileID: 920896440503781651}
   audioSource: {fileID: 1588993454451550657}
   hitTriggerName: Hit
   deathTriggerName: Die
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
+  deathEffect: {fileID: 6466970472444941621, guid: 7cc567513d1f62a4ba7fffa5e4e123d3, type: 3}
+  deathDelayTime: 2
 --- !u!114 &6787378500406923823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,8 +1341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
-  detectRange: 30
-  attackRange: 20
+  detectRange: 20
+  attackRange: 15
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
@@ -1368,6 +1371,28 @@ MonoBehaviour:
   turnSpeed: 3
   minPitch: -10
   maxPitch: 45
+--- !u!95 &6310719627124484775
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245912203646359573}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc8be34f40f988a4a97fbf4be73d0bc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5091045602656804573
 GameObject:
   m_ObjectHideFlags: 0
@@ -11863,7 +11888,7 @@ GameObject:
   - component: {fileID: 7470105486115940697}
   - component: {fileID: 2118272653484568960}
   m_Layer: 13
-  m_Name: Support
+  m_Name: Support1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

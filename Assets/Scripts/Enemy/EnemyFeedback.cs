@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class EnemyFeedback : MonoBehaviour
 {
@@ -14,8 +16,10 @@ public class EnemyFeedback : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip hitSound;
     public AudioClip deathSound;
+    public GameObject deathEffect;
 
     private bool isDead;
+    public float deathDelayTime = 2f;
 
     public void PlayHit()
     {
@@ -30,13 +34,29 @@ public class EnemyFeedback : MonoBehaviour
     {
         if (isDead) 
             return;
+
+        StartCoroutine(DeathRoutine());
+
+    }
+    IEnumerator DeathRoutine()
+    {
         isDead = true;
 
         TriggerAnimation(deathTriggerName);
-        PlayOneShot(deathSound);
-        Destroy(gameObject);
+        if (deathEffect != null)
+        {
+            GameObject vfx = Instantiate(deathEffect, gameObject.transform.position, Quaternion.identity);
 
+            Destroy(vfx, 5f);
+        } 
+
+        PlayOneShot(deathSound);
+
+        yield return new WaitForSeconds(deathDelayTime);
+
+        Destroy(gameObject);
     }
+    
 
     private void TriggerAnimation(string triggerName)
     {

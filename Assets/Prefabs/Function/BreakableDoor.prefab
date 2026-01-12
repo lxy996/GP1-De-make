@@ -5950,7 +5950,7 @@ MonoBehaviour:
   audioSource: {fileID: 1796523325464356200}
   hitSound: {fileID: 0}
   deathSound: {fileID: 0}
-  breakVfx: {fileID: 0}
+  breakVfx: {fileID: 7388905487230597418, guid: da0b04dd048a1fb4abfbe159d57a76cf, type: 3}
 --- !u!114 &264932053867406459
 MonoBehaviour:
   m_ObjectHideFlags: 0

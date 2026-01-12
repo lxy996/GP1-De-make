@@ -75,7 +75,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                         break;
                     }
 
-                    if (Time.time >= nextItemScanTime)
+                    if (Time.time >= nextItemScanTime && sensor.InDetectRange)
                     {
                         state = State.SeekItem;
                     }

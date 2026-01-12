@@ -15295,7 +15295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   audioSource: {fileID: 872785240772257023}
-  cureVfx: {fileID: 0}
+  cureVfx: {fileID: 3730857536428788823, guid: 584aa8261913b0f4b985ef0fd4287af4, type: 3}
   cureSfx: {fileID: 0}
   destroyOnUse: 1
 --- !u!114 &7263063778669563580
@@ -15310,7 +15310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0306abc59e04d9845ad3aefff431ad98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  breakVfx: {fileID: 0}
+  breakVfx: {fileID: 1622834092569829639, guid: 7601706b19e6dd04fb5c7f53cdba2f76, type: 3}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 872785240772257023}
   damage: {fileID: 8233885412377935154}
@@ -15345,9 +15345,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
   projectileOwner: {fileID: 3315972654020475040}
+  collisionEffect: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  collisionClip: {fileID: 0}
+  animator: {fileID: 0}
   damage: 1
-  minSpeed: 0.1
+  minSpeed: 0.5
   armed: 0
+  collisionTriggerName: 
 --- !u!114 &3315972654020475040
 MonoBehaviour:
   m_ObjectHideFlags: 0
