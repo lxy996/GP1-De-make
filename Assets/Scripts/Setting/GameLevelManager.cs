@@ -8,6 +8,7 @@ public class GameLevelManager : MonoBehaviour
     public static GameLevelManager Instance;
 
     public GameUIManager gameUIManager;
+    public LevelSpawner levelSpawner;
 
     [Header("Level Settings")]
     public List<GameObject> levelPrefabs; 
@@ -77,6 +78,11 @@ public class GameLevelManager : MonoBehaviour
         currentLevelInstance = Instantiate(prefabToSpawn, levelOrigin.position, Quaternion.identity);
         currentLevelIndex++;
 
+        if (levelSpawner != null)
+        {
+            levelSpawner.InitLevel(currentLevelInstance.transform);
+        }
+
         // Reloate player's location
         Transform startPoint = currentLevelInstance.transform.Find("PlayerStart");
         if (startPoint != null)
@@ -133,7 +139,7 @@ public class GameLevelManager : MonoBehaviour
     }
     void UpdateGoldUI()
     {
-        if (goldText) goldText.text = $"GOLD: {currentGold}";
+        if (goldText) goldText.text = $"{currentGold}";
     }
 
     // Used for other script

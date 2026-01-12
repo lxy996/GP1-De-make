@@ -10175,7 +10175,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.5
+  m_Speed: 0.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -10300,9 +10300,9 @@ MonoBehaviour:
   firePoint: {fileID: 1396276658083526619}
   fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
   shootCooldown: 1.2
-  shootForce: 14
+  shootForce: 20
   selfCollisionIgnoreTime: 0.25
-  aimHeight: 0.2
+  aimHeight: 1.5
   aimTurnSpeed: 12
 --- !u!114 &4758035565122557588
 MonoBehaviour:
@@ -10327,10 +10327,10 @@ MonoBehaviour:
   repathInterval: 0.2
   itemScanInterval: 0.15
   throwForce: 16
-  aimHeight: 0.2
+  aimHeight: 1.5
   turnSpeed: 10
   selfCollisionIgnoreTime: 0.3
-  aimDuration: 0.35
+  aimDuration: 1
   recoverDuration: 0.2
   chasePlayerWhenNoItem: 1
 --- !u!1 &5341489287110770754

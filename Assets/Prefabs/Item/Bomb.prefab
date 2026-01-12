@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1207
+  m_VersionIndex: 1237
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -36455,7 +36455,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1388
+  m_VersionIndex: 1418
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -40249,7 +40249,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 891
+  m_VersionIndex: 921
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -40539,13 +40539,13 @@ MonoBehaviour:
   vfx: {fileID: 0}
   sfx: {fileID: 0}
   audioSource: {fileID: 3737094248658211454}
-  projectileOwner: {fileID: 0}
+  projectileOwner: {fileID: 1987096186007919192}
   delay: 3
   radius: 3
   damage: 2
   damageMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 47104
 --- !u!114 &3096846967259080889
 MonoBehaviour:
   m_ObjectHideFlags: 0

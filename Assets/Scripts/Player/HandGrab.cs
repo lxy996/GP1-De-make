@@ -31,6 +31,7 @@ public class HandGrab : MonoBehaviour
     [Header("Time")]
     public float extendTime = 0.04f;
     public float retractTime = 0.06f;
+    public float ignoreCollisionTime = 0.5f;
 
     [Header("Throw")]
     public float throwForce = 16f;
@@ -267,7 +268,22 @@ public class HandGrab : MonoBehaviour
 
             }
         }
-            
+
+        // To avoid the fireball immediately destroy
+        Collider[] playerColliders = GetComponentsInChildren<Collider>();
+        Collider projectileCollider = held.GetComponent<Collider>();
+
+        if (projectileCollider != null && playerColliders.Length > 0)
+        {
+            foreach (var col in playerColliders)
+            {
+                
+                Physics.IgnoreCollision(projectileCollider, col, true);
+            }
+
+            StartCoroutine(RestoreCollision(projectileCollider, playerColliders, ignoreCollisionTime)); 
+        }
+
 
         held.isKinematic = false;
         held.interpolation = RigidbodyInterpolation.Interpolate;
@@ -292,8 +308,8 @@ public class HandGrab : MonoBehaviour
     }
 
 
-    // Logic for detecting the best target
 
+    // Logic for detecting the best target
 
     bool FindBestTarget(out Rigidbody bestRb, out Vector3 bestPoint)
     {
@@ -390,6 +406,19 @@ public class HandGrab : MonoBehaviour
         }
 
         return true;
+    }
+    IEnumerator RestoreCollision(Collider projectileCol, Collider[] ownerCols, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (projectileCol != null)
+        {
+            foreach (var col in ownerCols)
+            {
+                if (col != null)
+                    Physics.IgnoreCollision(projectileCol, col, false);
+            }
+        }
     }
 
     private void TryConvertHeldItem(bool isLeft)

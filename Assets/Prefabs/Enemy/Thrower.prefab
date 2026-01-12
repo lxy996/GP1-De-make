@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3972950984129434444}
   - component: {fileID: 4194063385835083289}
-  m_Layer: 21
+  m_Layer: 13
   m_Name: MiniMapEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10071,7 +10071,7 @@ GameObject:
   - component: {fileID: 6404553033311519818}
   - component: {fileID: 7454768474188890806}
   - component: {fileID: 8548425835493252043}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11561,7 +11561,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &4840565128890881143
@@ -11578,7 +11578,7 @@ GameObject:
   - component: {fileID: 5972646039251764207}
   - component: {fileID: 6226089579131185817}
   - component: {fileID: 7856094116398199821}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13068,7 +13068,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &4992567886338322561
@@ -13119,7 +13119,7 @@ GameObject:
   - component: {fileID: 1849989800091855325}
   - component: {fileID: 2983622908828305079}
   - component: {fileID: 3631202512813524002}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14609,7 +14609,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &5593776571100328541
@@ -14621,7 +14621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9178258465467550240}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14660,7 +14660,7 @@ GameObject:
   - component: {fileID: 7928130641003858319}
   - component: {fileID: 2201340407865640456}
   - component: {fileID: 5608780514099821741}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16150,7 +16150,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &6457994494325223854
@@ -16175,7 +16175,7 @@ GameObject:
   - component: {fileID: 7027613209854054552}
   - component: {fileID: 3258784897336517796}
   - component: {fileID: 906840751752135669}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Thrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16462,7 +16462,7 @@ MonoBehaviour:
   firePoint: {fileID: 8379512461932505210}
   fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
   shootCooldown: 1.2
-  shootForce: 14
+  shootForce: 20
   selfCollisionIgnoreTime: 0.25
   aimHeight: 0.2
   aimTurnSpeed: 12
@@ -16489,10 +16489,10 @@ MonoBehaviour:
   repathInterval: 0.2
   itemScanInterval: 0.15
   throwForce: 16
-  aimHeight: 0.2
+  aimHeight: 1.5
   turnSpeed: 10
   selfCollisionIgnoreTime: 0.3
-  aimDuration: 0.35
+  aimDuration: 1
   recoverDuration: 0.2
   chasePlayerWhenNoItem: 1
 --- !u!114 &3258784897336517796
@@ -16551,7 +16551,7 @@ GameObject:
   - component: {fileID: 2240927860905360493}
   - component: {fileID: 2545845927321289228}
   - component: {fileID: 3607673106037292264}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18041,7 +18041,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &7439788756544598612
@@ -18058,7 +18058,7 @@ GameObject:
   - component: {fileID: 1393619091857299157}
   - component: {fileID: 8283333410879977782}
   - component: {fileID: 960430819930353724}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19925,6 +19925,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}

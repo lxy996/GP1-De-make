@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef747b7974336dc498af09fbd8c9a485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  spawnPoint: {fileID: 7445536247444793680}
   baseY: 0
   entries:
   - prefab: {fileID: 3961376498851539704, guid: 3427f4a45b6e65c45b7225c015599280, type: 3}
@@ -80,5 +81,5 @@ MonoBehaviour:
     blockRadius: 0
   blockingMask:
     serializedVersion: 2
-    m_Bits: 306176
+    m_Bits: 322560
   maxPrefabRerollAttempts: 5

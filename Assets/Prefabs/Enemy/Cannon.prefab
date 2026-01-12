@@ -1362,7 +1362,7 @@ MonoBehaviour:
   pitchPivot: {fileID: 2072515802859394771}
   shootCooldown: 2.5
   flightTime: 0.65
-  aimHeight: 0.6
+  aimHeight: 1.5
   maxLaunchSpeed: 22
   selfCollisionIgnoreTime: 0.25
   turnSpeed: 8

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1418349194896285035}
   - component: {fileID: 6896069864040144336}
   - component: {fileID: 4918417510410902796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4573
+  m_VersionIndex: 4594
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -670,7 +670,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &2346815971167184315
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 8264169944535767098}
   - component: {fileID: 2093410427257496555}
   - component: {fileID: 5106309670007489342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7957,7 +7957,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4061
+  m_VersionIndex: 4082
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8082,7 +8082,7 @@ GameObject:
   - component: {fileID: 971574149440903672}
   - component: {fileID: 3370331960782678594}
   - component: {fileID: 1260915614118463644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15032,7 +15032,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 4754
+  m_VersionIndex: 4775
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15140,7 +15140,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &7077653229975020043
@@ -15159,7 +15159,7 @@ GameObject:
   - component: {fileID: 8233885412377935154}
   - component: {fileID: 3315972654020475040}
   - component: {fileID: 596178924267034245}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15313,7 +15313,7 @@ MonoBehaviour:
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 872785240772257023}
-  damage: {fileID: 0}
+  damage: {fileID: 8233885412377935154}
 --- !u!114 &5604349901334341576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15404,7 +15404,7 @@ GameObject:
   - component: {fileID: 3849895310782831002}
   - component: {fileID: 1377952804935080303}
   - component: {fileID: 2794460935037734369}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16786,7 +16786,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1976
+  m_VersionIndex: 1997
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

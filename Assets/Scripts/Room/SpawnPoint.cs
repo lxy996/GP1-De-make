@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     [Header("Position")]
+    public GameObject spawnPoint;
     public float baseY = 0f;
 
     [Header("Spawn List")]
@@ -15,6 +16,10 @@ public class SpawnPoint : MonoBehaviour
 
     private readonly Collider[] overlapCache = new Collider[16]; //A temporary storage for physics overlap checks.
 
+    void Awake()
+    {
+        baseY = spawnPoint.transform.position.y;
+    }
     // Execute the Spawn task based on the Spawn weight
     public GameObject Spawn(System.Random rng)
     {

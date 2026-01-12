@@ -7,8 +7,11 @@ public class LevelSpawner : MonoBehaviour
     public bool randomSeed = true;
     public int seed = 0;
 
-    void Start()
+    public void InitLevel(Transform levelRoot)
     {
+        
+        roomsParent = levelRoot;
+
         GenerateLevel();
     }
     void GenerateLevel()

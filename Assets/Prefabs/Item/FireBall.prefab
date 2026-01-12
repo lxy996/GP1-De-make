@@ -306,4 +306,4 @@ MonoBehaviour:
   breakVfx: {fileID: 0}
   breakSfx: {fileID: 0}
   audioSource: {fileID: 6734635242196056148}
-  damage: {fileID: 0}
+  damage: {fileID: 2428616337305756095}

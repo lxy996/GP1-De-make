@@ -43,16 +43,18 @@ public class ShopSlot : MonoBehaviour, IInteractable
             case ShopType.Bomb:
 
                 realItemPrefab = bombPrefab;
+                price = 10;
                 name = "Bomb";
-                desc = "Effect: Deals AoE explosive damage.";
+                desc = "Deals AoE explosive damage.";
                 break;
 
 
             case ShopType.Potion:
 
                 realItemPrefab = potionPrefab;
+                price = 10;
                 name = "Health Potion";
-                desc = "Effect: Restores Health to maximum.";
+                desc = "Restores Health to maximum.";
                 break;
 
 
@@ -66,6 +68,7 @@ public class ShopSlot : MonoBehaviour, IInteractable
                         RelicItem data = realItemPrefab.GetComponent<RelicItem>();
                         if (data != null)
                         {
+                            price = 40;
                             name = data.relicName;
                             desc = data.description;
                         }
