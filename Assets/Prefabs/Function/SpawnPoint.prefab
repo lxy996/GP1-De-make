@@ -52,8 +52,8 @@ MonoBehaviour:
     yOffset: 0.45
     blockRadius: 0.5
   - prefab: {fileID: 5288725536093227330, guid: 22da490e6ba45594384230a0382feb69, type: 3}
-    weight: 0
-    yOffset: 0
+    weight: 1
+    yOffset: 1.15
     blockRadius: 0
   - prefab: {fileID: 4245912203646359573, guid: 46214d1f90c47dc43bcef4130fea0c32, type: 3}
     weight: 1
@@ -64,10 +64,10 @@ MonoBehaviour:
     yOffset: 1.08
     blockRadius: 0.5
   - prefab: {fileID: 5288725536093227330, guid: d95cd2333e89c414f94d92123ef5736a, type: 3}
-    weight: 0
-    yOffset: 0
-    blockRadius: 0
-  - prefab: {fileID: 5288725536093227330, guid: a80cb02b2de443043af3b36ca82b32b9, type: 3}
+    weight: 1
+    yOffset: 0.8
+    blockRadius: 0.85
+  - prefab: {fileID: 6457994494325223854, guid: e0cd15d9b51f9e14a99c350e16717a86, type: 3}
     weight: 1
     yOffset: 1.075
     blockRadius: 0.5

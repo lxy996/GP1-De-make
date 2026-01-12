@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &686178766918763326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2736680966959105054}
+  - component: {fileID: 2654324264839985228}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2736680966959105054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686178766918763326}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4098896, y: -5.75781, z: -9.51973}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2654324264839985228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686178766918763326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef747b7974336dc498af09fbd8c9a485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  spawnPoint: {fileID: 686178766918763326}
+  baseY: 0
+  entries:
+  - prefab: {fileID: 3961376498851539704, guid: 3427f4a45b6e65c45b7225c015599280, type: 3}
+    weight: 3
+    yOffset: 0.45
+    blockRadius: 0.5
+  - prefab: {fileID: 5288725536093227330, guid: 22da490e6ba45594384230a0382feb69, type: 3}
+    weight: 3
+    yOffset: 1.15
+    blockRadius: 0
+  - prefab: {fileID: 5288725536093227330, guid: 7f11e8d4c28250044931e66c7816266c, type: 3}
+    weight: 1.5
+    yOffset: 1.08
+    blockRadius: 0.5
+  - prefab: {fileID: 5288725536093227330, guid: d95cd2333e89c414f94d92123ef5736a, type: 3}
+    weight: 3
+    yOffset: 0.8
+    blockRadius: 0.85
+  - prefab: {fileID: 6457994494325223854, guid: e0cd15d9b51f9e14a99c350e16717a86, type: 3}
+    weight: 1.5
+    yOffset: 1.16
+    blockRadius: 1.6
+  blockingMask:
+    serializedVersion: 2
+    m_Bits: 322560
+  maxPrefabRerollAttempts: 5

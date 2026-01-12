@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8504628415382712669}
   - component: {fileID: 5394826763572780555}
   - component: {fileID: 95078457130700468}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1163,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &1588993454451550657
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
-  detectRange: 20
+  detectRange: 30
   attackRange: 20
   obstacleMask:
     serializedVersion: 2
@@ -1361,12 +1361,12 @@ MonoBehaviour:
   yawPivot: {fileID: 193089060856719167}
   pitchPivot: {fileID: 2072515802859394771}
   shootCooldown: 2.5
-  flightTime: 0.65
-  aimHeight: 1.5
+  flightTime: 1.5
+  aimHeight: 2
   maxLaunchSpeed: 22
-  selfCollisionIgnoreTime: 0.25
-  turnSpeed: 8
-  minPitch: -25
+  selfCollisionIgnoreTime: 0.5
+  turnSpeed: 3
+  minPitch: -10
   maxPitch: 45
 --- !u!1 &5091045602656804573
 GameObject:
@@ -10355,7 +10355,7 @@ GameObject:
   - component: {fileID: 6891165344676851381}
   - component: {fileID: 8336025729752655116}
   - component: {fileID: 7039643511110421372}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Rod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11862,7 +11862,7 @@ GameObject:
   - component: {fileID: 6906145039466772541}
   - component: {fileID: 7470105486115940697}
   - component: {fileID: 2118272653484568960}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}

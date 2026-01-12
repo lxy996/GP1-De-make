@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.Burst.Intrinsics;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyThrowerFSM : MonoBehaviour
@@ -11,6 +12,8 @@ public class EnemyThrowerFSM : MonoBehaviour
     public EnemySensor sensor;
     public NavMeshAgent agent;
     public Transform holdPoint;
+    public GameObject idle;
+    public GameObject Aim;
 
     [Header("Scan")]
     public LayerMask grabbableMask;
@@ -62,6 +65,8 @@ public class EnemyThrowerFSM : MonoBehaviour
             case State.Idle:
                 {
                     agent.isStopped = true;
+                    idle.SetActive(true);
+                    Aim.SetActive(false);
                     agent.ResetPath();
 
                     if (held != null)
@@ -90,6 +95,9 @@ public class EnemyThrowerFSM : MonoBehaviour
                         state = State.Idle;
                         break;
                     }
+
+                    idle.SetActive(true);
+                    Aim.SetActive(false);
 
                     nextItemScanTime = Time.time + itemScanInterval;
                     // Prioritize finding items that can be grab
@@ -124,6 +132,9 @@ public class EnemyThrowerFSM : MonoBehaviour
                         break;
                     }
 
+                    idle.SetActive(true);
+                    Aim.SetActive(false);
+
                     // If the item has already been taken by someone else, change target.
                     ProjectileOwner ownerComp = targetItem.GetComponent<ProjectileOwner>();
                     if (ownerComp != null && ownerComp.isHeld)
@@ -156,6 +167,9 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.ChasePlayer:
                 {
+                    idle.SetActive(false);
+                    Aim.SetActive(true);
+
                     if (held != null)
                     {
                         // If enemy has the ball, just chase the player until it enters attack range and have vision of player.
@@ -217,6 +231,8 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Aim:
                 {
+                    idle.SetActive(false);
+                    Aim.SetActive(true);
                     agent.isStopped = true;
 
                     if (held == null)
@@ -247,6 +263,8 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Throw:
                 {
+                    idle.SetActive(false);
+                    Aim.SetActive(true);
                     FaceTarget(sensor.target.position);
                     DoThrow();
 
@@ -268,6 +286,9 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Recover:
                 {
+                    idle.SetActive(true);
+                    Aim.SetActive(false);
+
                     agent.isStopped = true;
 
                     if (Time.time >= recoverUntilTime)

@@ -10014,7 +10014,6 @@ GameObject:
   - component: {fileID: 1637566530419619615}
   - component: {fileID: 7043670999861221907}
   - component: {fileID: 7039624236370851086}
-  - component: {fileID: 4758035565122557588}
   m_Layer: 13
   m_Name: FireMan
   m_TagString: Untagged
@@ -10067,7 +10066,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &125830928248304221
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10262,8 +10261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
-  detectRange: 12
-  attackRange: 10
+  detectRange: 30
+  attackRange: 25
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
@@ -10299,40 +10298,11 @@ MonoBehaviour:
   sensor: {fileID: 1637566530419619615}
   firePoint: {fileID: 1396276658083526619}
   fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
-  shootCooldown: 1.2
+  shootCooldown: 2
   shootForce: 20
   selfCollisionIgnoreTime: 0.25
-  aimHeight: 1.5
+  aimHeight: 2
   aimTurnSpeed: 12
---- !u!114 &4758035565122557588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288725536093227330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 512e39667f1d90d4c9428b338611994a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  sensor: {fileID: 1637566530419619615}
-  agent: {fileID: -5276297465191228073}
-  holdPoint: {fileID: 2778539420052892534}
-  grabbableMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  searchRadius: 10
-  pickupDistance: 1.4
-  repathInterval: 0.2
-  itemScanInterval: 0.15
-  throwForce: 16
-  aimHeight: 1.5
-  turnSpeed: 10
-  selfCollisionIgnoreTime: 0.3
-  aimDuration: 1
-  recoverDuration: 0.2
-  chasePlayerWhenNoItem: 1
 --- !u!1 &5341489287110770754
 GameObject:
   m_ObjectHideFlags: 0
