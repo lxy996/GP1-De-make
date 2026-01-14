@@ -8,6 +8,7 @@ public class ExplosionOnCollision : MonoBehaviour
     public AudioClip sfx;
     public AudioSource audioSource;
     public ProjectileOwner projectileOwner;
+    public ProjectileDamage projectileDamage;
 
     [Header("Settings")]
     public float delay = 10f;
@@ -24,6 +25,8 @@ public class ExplosionOnCollision : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (!projectileDamage.armed)
+            return;
 
         if (!hasStartedCountdown)
         {
@@ -40,9 +43,10 @@ public class ExplosionOnCollision : MonoBehaviour
             Instantiate(vfx, transform.position, Quaternion.identity);
         }
             
-        if (audioSource != null && sfx != null)
+        if (sfx != null)
         {
-            audioSource.PlayOneShot(sfx);
+            AudioSource.PlayClipAtPoint(sfx, transform.position);
+
         }
             
 

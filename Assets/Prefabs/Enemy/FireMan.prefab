@@ -1519,9 +1519,9 @@ GameObject:
   - component: {fileID: 3959471073027328493}
   - component: {fileID: 5132491273450119103}
   - component: {fileID: 2194441580878999359}
+  - component: {fileID: 9075636330780850101}
   - component: {fileID: 2999427589965127084}
   - component: {fileID: 7092313087949628424}
-  - component: {fileID: 9075636330780850101}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -3778,6 +3778,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9075636330780850101
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627174051949847071}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!33 &2999427589965127084
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3793,7 +3815,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2627174051949847071}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3802,28 +3824,6 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!64 &9075636330780850101
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627174051949847071}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -8576,7 +8576,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -8650,10 +8650,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fce2431dd8454145b89586d20111e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 1
+  maxHP: 2
   invincibilityDuration: 0.08
   currentHP: 0
-  goldReward: 1
+  goldReward: 5
 --- !u!114 &5945496976979119685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8669,9 +8669,11 @@ MonoBehaviour:
   animator: {fileID: 3473760299845601604}
   rigidBody: {fileID: 4811643348748630873}
   audioSource: {fileID: 125830928248304221}
+  Idle: {fileID: 6560125781090559450}
+  Aim: {fileID: 7780382115185921011}
   hitTriggerName: Hit
   deathTriggerName: Die
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 1c6f138e04f3e464285ee7f5fa392ced, type: 3}
   deathSound: {fileID: 0}
   deathEffect: {fileID: 738242421692365664, guid: 6643fb8a9838d4b4aa49c370843688ed, type: 3}
   deathDelayTime: 2
@@ -8754,11 +8756,14 @@ MonoBehaviour:
   fireballPrefab: {fileID: 7310671409779781473, guid: a164ad670b811fc4e8ef979571f02d19, type: 3}
   Idle: {fileID: 6560125781090559450}
   Aim: {fileID: 7780382115185921011}
+  audioSource: {fileID: 125830928248304221}
+  fireClip: {fileID: 8300000, guid: 1c6f138e04f3e464285ee7f5fa392ced, type: 3}
   shootCooldown: 3
-  shootForce: 20
+  shootForce: 36
   selfCollisionIgnoreTime: 0.5
   aimHeight: 2
   aimTurnSpeed: 12
+  aimDuration: 1
 --- !u!114 &3040483085311390980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8775,8 +8780,8 @@ MonoBehaviour:
   crownVisual: {fileID: 7855533697976840521}
   isElite: 0
   audioSource: {fileID: 125830928248304221}
-  breakVfx: {fileID: 0}
-  breakSfx: {fileID: 0}
+  breakVfx: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  breakSfx: {fileID: 8300000, guid: 367cc4150f5481a4dae0ff90b4dc823e, type: 3}
 --- !u!95 &3473760299845601604
 Animator:
   serializedVersion: 7

@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using UnityEngine.UI;
 
 public class FloatingInfo : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class FloatingInfo : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descText;
     public TextMeshProUGUI priceText; // Only the store will appear
+    public Image priceImage;
 
     private Transform targetCamera;
 
@@ -28,11 +30,13 @@ public class FloatingInfo : MonoBehaviour
             if (price >= 0)
             {
                 priceText.gameObject.SetActive(true);
-                priceText.text = $"${price}";
+                priceImage.gameObject.SetActive(true); 
+                priceText.text = $"{price}";
             }
             else
             {
                 priceText.gameObject.SetActive(false);
+                priceImage.gameObject.SetActive(false);
             }
         }
     }

@@ -98,10 +98,12 @@ public class PlayerRelics : MonoBehaviour
             if (handGrab != null && fireballPrefab != null)
             {
                 // Check whether right hand is empty
-                if (handGrab.TrySpawnItemInRightHand(fireballPrefab))
-                {
-                    fireballTimer = fireballInterval; 
-                }
+                //if (handGrab.TrySpawnItemInRightHand(fireballPrefab))
+                //{
+                //    fireballTimer = fireballInterval; 
+                //}
+                handGrab.TrySpawnItemInRightHand(fireballPrefab);
+                fireballTimer = fireballInterval;
             }
         }
     }

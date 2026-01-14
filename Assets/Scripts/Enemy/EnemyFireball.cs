@@ -9,6 +9,8 @@ public class EnemyFireball : MonoBehaviour
     public Rigidbody fireballPrefab;
     public GameObject Idle;
     public GameObject Aim;
+    public AudioSource audioSource;
+    public AudioClip fireClip;
 
     [Header("Shoot")]
     public float shootCooldown = 1.2f;
@@ -18,6 +20,7 @@ public class EnemyFireball : MonoBehaviour
     [Header("Aim")]
     public float aimHeight = 2.0f;
     public float aimTurnSpeed = 12f;
+    public float aimDuration = 1f;
 
     private float nextShootTime = 0f;
     void Awake()
@@ -42,6 +45,12 @@ public class EnemyFireball : MonoBehaviour
 
         FaceTarget(sensor.target.position);
 
+        if (Idle != null && Aim != null)
+        {
+            Idle.SetActive(false);
+            Aim.SetActive(true);
+        }
+
         if (Time.time >= nextShootTime)
         {
             nextShootTime = Time.time + shootCooldown;
@@ -63,11 +72,7 @@ public class EnemyFireball : MonoBehaviour
 
     void Shoot()
     {
-        if (Idle != null && Aim != null)
-        {
-            Idle.SetActive(false);
-            Aim.SetActive(true);
-        }
+        
 
         Vector3 aimPoint = sensor.target.position + Vector3.up * aimHeight;
 
@@ -96,6 +101,7 @@ public class EnemyFireball : MonoBehaviour
 
         Vector3 dir = (aimPoint - firePoint.position).normalized;
         rb.AddForce(dir * shootForce, ForceMode.VelocityChange);
+        audioSource.PlayOneShot(fireClip);
 
         if (Idle != null && Aim != null)
         {

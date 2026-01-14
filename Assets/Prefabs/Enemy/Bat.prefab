@@ -23857,8 +23857,8 @@ GameObject:
   - component: {fileID: 4506282746156181598}
   - component: {fileID: 1637566530419619615}
   - component: {fileID: 7043670999861221907}
-  - component: {fileID: 7715645550178276226}
   - component: {fileID: 1943134263084324379}
+  - component: {fileID: 7715645550178276226}
   - component: {fileID: 4435796095052494203}
   - component: {fileID: 1290406784569258997}
   m_Layer: 13
@@ -23972,7 +23972,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -24022,7 +24022,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -24049,7 +24049,7 @@ MonoBehaviour:
   maxHP: 1
   invincibilityDuration: 0.08
   currentHP: 0
-  goldReward: 1
+  goldReward: 2
 --- !u!114 &5945496976979119685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24065,10 +24065,12 @@ MonoBehaviour:
   animator: {fileID: 1290406784569258997}
   rigidBody: {fileID: 4811643348748630873}
   audioSource: {fileID: 125830928248304221}
+  Idle: {fileID: 0}
+  Aim: {fileID: 0}
   hitTriggerName: Hit
   deathTriggerName: Die
-  hitSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: e3b30a5f1bafe844d87f610c80612cf5, type: 3}
+  deathSound: {fileID: 8300000, guid: e3b30a5f1bafe844d87f610c80612cf5, type: 3}
   deathEffect: {fileID: 0}
   deathDelayTime: 2
 --- !u!114 &4905970856558846369
@@ -24133,27 +24135,6 @@ MonoBehaviour:
   repathInterval: 0.2
   aggroDuration: 3
   stopInAttackRange: 1
---- !u!65 &7715645550178276226
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288725536093227330}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.38, z: 0.3}
-  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!65 &1943134263084324379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24161,7 +24142,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5288725536093227330}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -24170,6 +24151,27 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.38, z: 0.3}
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!65 &7715645550178276226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288725536093227330}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -24191,8 +24193,8 @@ MonoBehaviour:
   crownVisual: {fileID: 7193584467032915562}
   isElite: 0
   audioSource: {fileID: 125830928248304221}
-  breakVfx: {fileID: 0}
-  breakSfx: {fileID: 0}
+  breakVfx: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  breakSfx: {fileID: 8300000, guid: 367cc4150f5481a4dae0ff90b4dc823e, type: 3}
 --- !u!95 &1290406784569258997
 Animator:
   serializedVersion: 7

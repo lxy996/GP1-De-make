@@ -165,8 +165,8 @@ GameObject:
   - component: {fileID: 5172287943010807707}
   - component: {fileID: 2119174749434120178}
   - component: {fileID: 1621689969748483603}
-  - component: {fileID: 3282732155634866644}
   - component: {fileID: 2373927031424101509}
+  - component: {fileID: 3282732155634866644}
   m_Layer: 13
   m_Name: Thrower
   m_TagString: Untagged
@@ -10011,29 +10011,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!136 &3282732155634866644
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185900024768119192}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.83418
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.08291, z: 0}
 --- !u!136 &2373927031424101509
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10041,7 +10018,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2185900024768119192}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10057,6 +10034,29 @@ CapsuleCollider:
   m_Height: 1.83418
   m_Direction: 1
   m_Center: {x: 0, y: 0.08287263, z: 0}
+--- !u!136 &3282732155634866644
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185900024768119192}
+  m_Material: {fileID: 13400000, guid: fba0ee8d9347a1f46834a83cc06c4b3c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.83418
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.08291, z: 0}
 --- !u!1 &3247978013884467158
 GameObject:
   m_ObjectHideFlags: 0
@@ -13086,7 +13086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5929032846007919678
 Transform:
   m_ObjectHideFlags: 0
@@ -14627,7 +14627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9178258465467550240
 Transform:
   m_ObjectHideFlags: 0
@@ -16212,7 +16212,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -16363,7 +16363,7 @@ MonoBehaviour:
   maxHP: 1
   invincibilityDuration: 0.08
   currentHP: 0
-  goldReward: 1
+  goldReward: 3
 --- !u!114 &5489993944870715653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16379,6 +16379,8 @@ MonoBehaviour:
   animator: {fileID: 5284595656570185866}
   rigidBody: {fileID: 4526360708830130184}
   audioSource: {fileID: 3344222757256223844}
+  Idle: {fileID: 5593776571100328541}
+  Aim: {fileID: 4992567886338322561}
   hitTriggerName: Hit
   deathTriggerName: Die
   hitSound: {fileID: 0}
@@ -16425,8 +16427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 0}
-  detectRange: 30
-  attackRange: 25
+  detectRange: 25
+  attackRange: 15
   obstacleMask:
     serializedVersion: 2
     m_Bits: 411648
@@ -16447,6 +16449,8 @@ MonoBehaviour:
   holdPoint: {fileID: 6825009239160591535}
   idle: {fileID: 5593776571100328541}
   Aim: {fileID: 4992567886338322561}
+  audioSource: {fileID: 3344222757256223844}
+  throwClip: {fileID: 8300000, guid: 8aa390fb900d85341989399efc3fe388, type: 3}
   grabbableMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -16454,12 +16458,12 @@ MonoBehaviour:
   pickupDistance: 1.5
   repathInterval: 0.2
   itemScanInterval: 0.15
-  throwForce: 16
+  throwForce: 36
   aimHeight: 2
   turnSpeed: 5
   selfCollisionIgnoreTime: 0.3
   aimDuration: 1
-  recoverDuration: 0.2
+  recoverDuration: 0.5
   chasePlayerWhenNoItem: 1
 --- !u!114 &3258784897336517796
 MonoBehaviour:
@@ -16477,8 +16481,8 @@ MonoBehaviour:
   crownVisual: {fileID: 7795544915736856827}
   isElite: 0
   audioSource: {fileID: 3344222757256223844}
-  breakVfx: {fileID: 0}
-  breakSfx: {fileID: 0}
+  breakVfx: {fileID: 4563957721296769962, guid: 65e0b4b4a0a251544a1a9cf52b0b6c8c, type: 3}
+  breakSfx: {fileID: 8300000, guid: 367cc4150f5481a4dae0ff90b4dc823e, type: 3}
 --- !u!95 &5284595656570185866
 Animator:
   serializedVersion: 7

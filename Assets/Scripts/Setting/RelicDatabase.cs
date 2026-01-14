@@ -7,7 +7,7 @@ public class RelicDatabase : MonoBehaviour
     public static RelicDatabase Instance;
 
     [Header("Relic List")]
-    public List<GameObject> allRelics; // 在Inspector把所有遗物Prefab拖进去
+    public List<GameObject> allRelics; 
 
     // Record the relics that player has obtained
     private HashSet<string> obtainedRelics = new HashSet<string>();

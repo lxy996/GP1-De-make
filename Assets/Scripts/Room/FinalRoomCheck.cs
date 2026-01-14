@@ -4,7 +4,8 @@ public class FinalRoomCheck : MonoBehaviour
 {
     [Header("Settings")]
     public BoxCollider roomTrigger;
-    public PortalController portal;
+    public PortalController portalController;
+    public GameObject portal;
     public LayerMask enemyLayerMask;
     public float checkInterval = 0.5f;
 
@@ -17,6 +18,7 @@ public class FinalRoomCheck : MonoBehaviour
     private readonly Collider[] overlapCache = new Collider[32];
     void Awake()
     {
+        portal.SetActive (false);
         if (roomTrigger == null) roomTrigger = GetComponent<BoxCollider>();
         if (roomTrigger != null) roomTrigger.isTrigger = true;
     }
@@ -49,9 +51,10 @@ public class FinalRoomCheck : MonoBehaviour
     void OpenPortal()
     {
         portalOpened = true;
+        portal.SetActive(true);
         
-        if (portal != null) 
-            portal.Open();
+        if (portalController != null)
+            portalController.Open();
     }
     private bool CheckEnemies()
     {

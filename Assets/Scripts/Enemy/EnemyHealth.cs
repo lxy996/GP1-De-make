@@ -29,16 +29,18 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         lastHit = Time.time;
         currentHP -= damageAmount;
 
-        if (feedback != null)
-        {
-            feedback.PlayHit();
-        }
+        
 
         OnDamageTaken(damageAmount);
 
         if (currentHP <= 0f)
         {
             Die();
+        }
+
+        if (feedback != null && currentHP > 0f)
+        {
+            feedback.PlayHit();
         }
     }
     protected virtual void OnDamageTaken(float damage) { }
@@ -57,7 +59,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         }
             
-
-        Destroy(gameObject);
+        if (feedback != null) feedback.PlayDeath();
+        //Destroy(gameObject);
     }
 }

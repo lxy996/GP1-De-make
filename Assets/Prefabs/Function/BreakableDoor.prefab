@@ -5948,8 +5948,8 @@ MonoBehaviour:
   fracturedPrefab: {fileID: 0}
   explosionForce: 10
   audioSource: {fileID: 1796523325464356200}
-  hitSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2b0c721a09a06f64e921d150ef4b173f, type: 3}
+  deathSound: {fileID: 8300000, guid: 2b0c721a09a06f64e921d150ef4b173f, type: 3}
   breakVfx: {fileID: 7388905487230597418, guid: da0b04dd048a1fb4abfbe159d57a76cf, type: 3}
 --- !u!114 &264932053867406459
 MonoBehaviour:
@@ -5986,8 +5986,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -6098,7 +6098,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.94, y: 1.175, z: 0.16}
+  m_Extents: {x: 1.5, y: 1.175, z: 0.4}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1

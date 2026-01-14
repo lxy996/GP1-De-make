@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class CrystalEnemy : EnemyHealth
 {
@@ -14,6 +13,7 @@ public class CrystalEnemy : EnemyHealth
     public GameObject spawnPointPrefab; 
     public int spawnsPerHit = 4;        
     public float spawnRadius = 5f;
+    public float yOffset;
 
     [Header("Visual Feedback")]
     public GameObject fragmentPrefab;
@@ -74,8 +74,8 @@ public class CrystalEnemy : EnemyHealth
     {
         for (int i = 0; i < spawnsPerHit; i++)
         {
-            Vector2 randomCircle = Random.insideUnitCircle * 5f;
-            Vector3 spawnPos = new Vector3(transform.position.x + randomCircle.x, 0, transform.position.z + randomCircle.y);
+            Vector2 randomCircle = Random.insideUnitCircle * 10f;
+            Vector3 spawnPos = new Vector3(transform.position.x + randomCircle.x, transform.position.y + yOffset, transform.position.z + randomCircle.y);
 
             // let spawn point to spawn items
             GameObject spObj = Instantiate(spawnPointPrefab, spawnPos, Quaternion.identity);

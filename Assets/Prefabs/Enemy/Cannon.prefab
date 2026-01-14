@@ -1045,7 +1045,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242668383093116393}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1f3cdfa71d767f343ae194f16bbb8631, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1222,7 +1222,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1290,10 +1290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fce2431dd8454145b89586d20111e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 1
+  maxHP: 2
   invincibilityDuration: 0.08
   currentHP: 0
-  goldReward: 1
+  goldReward: 5
 --- !u!114 &4915790018393363165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,9 +1309,11 @@ MonoBehaviour:
   animator: {fileID: 6310719627124484775}
   rigidBody: {fileID: 920896440503781651}
   audioSource: {fileID: 1588993454451550657}
+  Idle: {fileID: 0}
+  Aim: {fileID: 0}
   hitTriggerName: Hit
   deathTriggerName: Die
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 988c8039151224f449fcbbc3caa2d6a6, type: 3}
   deathSound: {fileID: 0}
   deathEffect: {fileID: 6466970472444941621, guid: 7cc567513d1f62a4ba7fffa5e4e123d3, type: 3}
   deathDelayTime: 2
@@ -1524,7 +1526,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7166415580005964122}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1f3cdfa71d767f343ae194f16bbb8631, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -11858,7 +11860,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7413063602450365046}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1f3cdfa71d767f343ae194f16bbb8631, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12918,7 +12920,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441415064080653238}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1f3cdfa71d767f343ae194f16bbb8631, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -38,6 +38,8 @@ public class TreasureRoom : MonoBehaviour
         
         if (prefab1 != null) leftObj = SpawnItemWithUI(prefab1, leftPoint);
         if (prefab2 != null) rightObj = SpawnItemWithUI(prefab2, rightPoint);
+        Debug.Log($"TreasureRoom pool count = {RelicDatabase.Instance.allRelics.Count}");
+        Debug.Log($"prefab1={(prefab1 ? prefab1.name : "NULL")} prefab2={(prefab2 ? prefab2.name : "NULL")}");
     }
 
     GameObject SpawnItemWithUI(GameObject prefab, Transform pos)

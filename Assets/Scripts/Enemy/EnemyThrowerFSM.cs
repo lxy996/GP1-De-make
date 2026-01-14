@@ -14,6 +14,8 @@ public class EnemyThrowerFSM : MonoBehaviour
     public Transform holdPoint;
     public GameObject idle;
     public GameObject Aim;
+    public AudioSource audioSource;
+    public AudioClip throwClip;
 
     [Header("Scan")]
     public LayerMask grabbableMask;
@@ -52,6 +54,7 @@ public class EnemyThrowerFSM : MonoBehaviour
     {
         if (sensor == null) sensor = GetComponent<EnemySensor>();
         if (agent == null) agent = GetComponent<NavMeshAgent>();
+        UpdateExpression();
     }
 
     void Update()
@@ -64,24 +67,25 @@ public class EnemyThrowerFSM : MonoBehaviour
         {
             case State.Idle:
                 {
+
                     agent.isStopped = true;
-                    idle.SetActive(true);
-                    Aim.SetActive(false);
+                    
                     agent.ResetPath();
 
                     if (held != null)
                     {
+                        ChangeState(State.Aim);
                         EnterAimState();
                         break;
                     }
 
                     if (Time.time >= nextItemScanTime && sensor.InDetectRange)
                     {
-                        state = State.SeekItem;
+                        ChangeState(State.SeekItem);
                     }
                     else if (chasePlayerWhenNoItem && sensor.InDetectRange)
                     {
-                        state = State.ChasePlayer;
+                        ChangeState(State.ChasePlayer);
                     }
 
                     break;
@@ -92,7 +96,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
                     if (Time.time < nextItemScanTime)
                     {
-                        state = State.Idle;
+                        ChangeState(State.Idle);
                         break;
                     }
 
@@ -105,20 +109,20 @@ public class EnemyThrowerFSM : MonoBehaviour
 
                     if (targetItem != null)
                     {
-                        state = State.GoToItem;
+                        ChangeState(State.GoToItem);
                     }
                     else
                     {
                         // Chase players when don't have grabbable
                         if (chasePlayerWhenNoItem && sensor.InDetectRange)
                         {
-                            state = State.ChasePlayer;
+                            ChangeState(State.ChasePlayer);
                         }
                         else
                         {
                             agent.isStopped = true;
                             agent.ResetPath();
-                            state = State.Idle;
+                            ChangeState(State.Idle);
                         }
                     }
                     break;
@@ -128,7 +132,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                 {
                     if (targetItem == null)
                     {
-                        state = State.SeekItem;
+                        ChangeState(State.SeekItem);
                         break;
                     }
 
@@ -140,7 +144,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                     if (ownerComp != null && ownerComp.isHeld)
                     {
                         targetItem = null;
-                        state = State.SeekItem;
+                        ChangeState(State.SeekItem);
                         break;
                     }
 
@@ -158,8 +162,16 @@ public class EnemyThrowerFSM : MonoBehaviour
                         TryPickup(targetItem);
                         targetItem = null;
 
-                        if (held != null) EnterAimState();
-                        else state = State.SeekItem;
+                        if (held != null)
+                        {
+                            ChangeState(State.Aim);
+                            EnterAimState();
+                        }
+
+                        else
+                        {
+                            ChangeState(State.SeekItem);
+                        }
                     }
 
                     break;
@@ -167,8 +179,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.ChasePlayer:
                 {
-                    idle.SetActive(false);
-                    Aim.SetActive(true);
+
 
                     if (held != null)
                     {
@@ -184,6 +195,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                         
                         if (sensor.InAttackRange && sensor.HasLineOfSight)
                         {
+                            ChangeState(State.Aim);
                             EnterAimState();
                         }
 
@@ -194,7 +206,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                     {
                         agent.isStopped = true;
                         agent.ResetPath();
-                        state = State.Idle;
+                        ChangeState(State.Idle);
                         break;
                     }
 
@@ -215,7 +227,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                         if (newItem != null)
                         {
                             targetItem = newItem;
-                            state = State.GoToItem;
+                            ChangeState(State.GoToItem);
                             break;
                         }
                     }
@@ -223,6 +235,7 @@ public class EnemyThrowerFSM : MonoBehaviour
                     // Theoretically, don't have grabbable items in hand, but if have, enter the aim state
                     if (held != null)
                     {
+                        ChangeState(State.Aim);
                         EnterAimState();
                     }
 
@@ -231,13 +244,12 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Aim:
                 {
-                    idle.SetActive(false);
-                    Aim.SetActive(true);
+
                     agent.isStopped = true;
 
                     if (held == null)
                     {
-                        state = State.SeekItem;
+                        ChangeState(State.SeekItem);
                         break;
                     }
 
@@ -245,7 +257,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
                     if (!sensor.InAttackRange || !sensor.HasLineOfSight)
                     {
-                        state = State.ChasePlayer;
+                        ChangeState(State.ChasePlayer);
                         break;
                     }
 
@@ -254,7 +266,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
                     if (canThrow)
                     {
-                        state = State.Throw;
+                        ChangeState(State.Throw);
                     }
 
 
@@ -263,8 +275,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Throw:
                 {
-                    idle.SetActive(false);
-                    Aim.SetActive(true);
+
                     FaceTarget(sensor.target.position);
                     DoThrow();
 
@@ -272,12 +283,12 @@ public class EnemyThrowerFSM : MonoBehaviour
                     if (recoverDuration > 0f)
                     {
                         recoverUntilTime = Time.time + recoverDuration;
-                        state = State.Recover;
+                        ChangeState(State.Recover);
                     }
                     else
                     {
-                       
-                        state = State.SeekItem;
+
+                        ChangeState(State.SeekItem);
 
                     }
 
@@ -286,14 +297,13 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             case State.Recover:
                 {
-                    idle.SetActive(true);
-                    Aim.SetActive(false);
+
 
                     agent.isStopped = true;
 
                     if (Time.time >= recoverUntilTime)
                     {
-                        state = State.SeekItem;
+                        ChangeState(State.SeekItem);
                     }
 
                     break;
@@ -303,7 +313,7 @@ public class EnemyThrowerFSM : MonoBehaviour
 
     private void EnterAimState()
     {
-        state = State.Aim;
+        //state = State.Aim;
         aimReadyTime = Time.time + aimDuration;
         agent.ResetPath();
     }
@@ -330,6 +340,10 @@ public class EnemyThrowerFSM : MonoBehaviour
 
             ProjectileOwner ownerComp = rb.GetComponent<ProjectileOwner>();
             if (ownerComp != null && ownerComp.isHeld) 
+                continue;
+
+            ProjectileDamage dmg = rb.GetComponent<ProjectileDamage>();
+            if (dmg != null && dmg.armed)
                 continue;
 
             // There must be a passable path between the enemy and the grabbable item
@@ -423,6 +437,7 @@ public class EnemyThrowerFSM : MonoBehaviour
         Vector3 direction = (aimPoint - holdPoint.position).normalized;
 
         rb.AddForce(direction * throwForce, ForceMode.VelocityChange);
+        audioSource.PlayOneShot(throwClip);
 
     }
 
@@ -464,5 +479,24 @@ public class EnemyThrowerFSM : MonoBehaviour
             IgnoreSelfCollision(rb, false);
     }
 
+    private void ChangeState(State newState)
+    {
+        if (state == newState) 
+            return; 
+
+        state = newState;
+
+        
+        UpdateExpression();
+    }
+    private void UpdateExpression()
+    {
+        
+        bool isAiming = (state == State.Aim || state == State.Throw || state == State.ChasePlayer || state == State.Recover);
+
+
+        if (idle != null) idle.SetActive(!isAiming);
+        if (Aim != null) Aim.SetActive(isAiming);
+    }
 
 }

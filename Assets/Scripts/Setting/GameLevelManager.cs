@@ -27,6 +27,11 @@ public class GameLevelManager : MonoBehaviour
     public TextMeshProUGUI killAmount;
     public Button summaryButton;
 
+    [Header("Summary Audio")]
+    public AudioSource uiAudioSource;
+    public AudioClip summaryLineClip;
+    public float lineDelay = 0.15f;
+
     [Header("Economy")]
     public int currentGold = 0;
     public TextMeshProUGUI goldText;
@@ -37,6 +42,7 @@ public class GameLevelManager : MonoBehaviour
     public GameStats totalStats = new GameStats();
 
     private GameObject currentLevelInstance;
+    private Coroutine currentRoutine;
 
 
     void Awake()
@@ -148,24 +154,27 @@ public class GameLevelManager : MonoBehaviour
 
     void ShowSummary()
     {
-        if (summaryPanel != null)
+
+        if (summaryPanel == null)
         {
-            summaryPanel.SetActive(true);
-            title.text = $"Level {currentLevelIndex} cleared!";
-            time.text = $"Time  taken:";
-            timeAmount.text = $"{currentStats.Duration:F2}s";
-            thrown.text = $"Items  thrown:";
-            thrownAmount.text = $"{currentStats.throwCount}";
-            kill.text = $"Monsters  killed:";
-            killAmount.text = $"{currentStats.killCount}";
-
-
-        }
-        else
-        {
-
             LoadNextLevel();
+            return;
         }
+        summaryPanel.SetActive(true);
+
+        title.text = $"Level {currentLevelIndex} cleared!";
+        time.text = $"Time  taken:";
+        timeAmount.text = $"{currentStats.Duration:F2}s";
+        thrown.text = $"Items  thrown:";
+        thrownAmount.text = $"{currentStats.throwCount}";
+        kill.text = $"Monsters  killed:";
+        killAmount.text = $"{currentStats.killCount}";
+
+        if (currentRoutine != null) StopCoroutine(currentRoutine);
+        currentRoutine = StartCoroutine(SummaryRoutine(false));
+
+
+
     }
 
     public void GameFinish(float type, GameStats totalStats)
@@ -208,6 +217,9 @@ public class GameLevelManager : MonoBehaviour
             summaryButton.onClick.RemoveAllListeners();
             summaryButton.onClick.AddListener(gameUIManager.OnBackToMenuButton);
         }
+
+        if (currentRoutine != null) StopCoroutine(currentRoutine);
+        currentRoutine = StartCoroutine(SummaryRoutine(true));
             
     }
     void UpdateGoldUI()
@@ -233,5 +245,40 @@ public class GameLevelManager : MonoBehaviour
         }
         return false;
     }
-    
+
+    IEnumerator SummaryRoutine(bool isRealtime)
+    {
+        title.gameObject.SetActive(false);
+        time.gameObject.SetActive(false);
+        timeAmount.gameObject.SetActive(false);
+        thrown.gameObject.SetActive(false);
+        thrownAmount.gameObject.SetActive(false);
+        kill.gameObject.SetActive(false);
+        killAmount.gameObject.SetActive(false);
+
+        IEnumerator Reveal(TextMeshProUGUI tmp)
+        {
+            tmp.gameObject.SetActive(true);
+
+            if (uiAudioSource != null && summaryLineClip != null)
+                uiAudioSource.PlayOneShot(summaryLineClip);
+
+            if (lineDelay > 0)
+            {
+                if (isRealtime) yield return new WaitForSecondsRealtime(lineDelay);
+                else yield return new WaitForSeconds(lineDelay);
+            }
+        }
+
+        yield return Reveal(title);
+
+        yield return Reveal(time);
+        yield return Reveal(timeAmount);
+
+        yield return Reveal(thrown);
+        yield return Reveal(thrownAmount);
+
+        yield return Reveal(kill);
+        yield return Reveal(killAmount);
+    }
 }

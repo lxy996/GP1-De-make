@@ -31,6 +31,8 @@ public class BreakableDoor : EnemyHealth
 
         if (feedback != null) feedback.PlayDeath();
 
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+
         Destroy(gameObject);
     }
 }

@@ -8,6 +8,8 @@ public class EnemyFeedback : MonoBehaviour
     public Animator animator;
     public Rigidbody rigidBody;
     public AudioSource audioSource;
+    public GameObject Idle;
+    public GameObject Aim;
 
     [Header("Animation Triggers")]
     public string hitTriggerName = "Hit";
@@ -43,6 +45,10 @@ public class EnemyFeedback : MonoBehaviour
         isDead = true;
 
         TriggerAnimation(deathTriggerName);
+
+        Destroy(Idle);
+        Destroy(Aim);
+
         if (deathEffect != null)
         {
             GameObject vfx = Instantiate(deathEffect, gameObject.transform.position, Quaternion.identity);

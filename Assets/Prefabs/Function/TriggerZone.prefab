@@ -67,7 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   roomTrigger: {fileID: 1015291645439986815}
-  portal: {fileID: 5535432522748489436, guid: fee68247383498048bf032b2a1e4c5e3, type: 3}
+  portalController: {fileID: 5535432522748489436, guid: fee68247383498048bf032b2a1e4c5e3, type: 3}
+  portal: {fileID: 7784236549480492552, guid: fee68247383498048bf032b2a1e4c5e3, type: 3}
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 40960

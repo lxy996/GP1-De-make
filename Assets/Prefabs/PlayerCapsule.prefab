@@ -509,14 +509,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 50176
   grabDistance: 10
-  grabRadius: 0.3
+  grabRadius: 0.8
   emptyPunchLocalOffset: {x: 0.05, y: 0.05, z: 0.025}
   emptyExtendTime: 0.03
   emptyRetractTime: 0.05
   extendTime: 0.1
   retractTime: 0.06
   ignoreCollisionTime: 1
-  throwForce: 24
+  throwForce: 35
+  throwClip: {fileID: 8300000, guid: 8aa390fb900d85341989399efc3fe388, type: 3}
+  audioSource: {fileID: 4259510145757992015}
 --- !u!114 &7767231592686116113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,12 +544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69800f2807467f24a95b8c7a51f3755e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 6
-  invincibilityDuration: 1
+  maxHP: 10
+  invincibilityDuration: 2
   audioSource: {fileID: 4259510145757992015}
-  hitSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  healthSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 3ad64240b4b68644fad00ca5d643c342, type: 3}
+  deathSound: {fileID: 8300000, guid: 3ad64240b4b68644fad00ca5d643c342, type: 3}
+  healthSound: {fileID: 8300000, guid: 2a00c2e0efc74804683358e02993e1ab, type: 3}
   UIAnimator: {fileID: 0}
   currentHP: 0
 --- !u!82 &4259510145757992015
@@ -562,8 +564,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1681,7 +1683,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3485
+  m_VersionIndex: 3497
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2709,7 +2711,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3737
+  m_VersionIndex: 3749
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2894,7 +2896,7 @@ Transform:
   m_GameObject: {fileID: 7010770245640862158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26, y: -0.18, z: 0.62}
+  m_LocalPosition: {x: 0.256, y: -0.235, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2964,7 +2966,7 @@ Transform:
   m_GameObject: {fileID: 8149099835316725980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.26, y: -0.18, z: 0.62}
+  m_LocalPosition: {x: -0.256, y: -0.235, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

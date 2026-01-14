@@ -9,8 +9,8 @@ public class PortalController : MonoBehaviour
     void Start()
     {
         
-        if (visualEffect) visualEffect.SetActive(false);
-        GetComponent<Collider>().enabled = false; 
+        //if (visualEffect) visualEffect.SetActive(false);
+        //GetComponent<Collider>().enabled = false; 
     }
 
     public void Open()

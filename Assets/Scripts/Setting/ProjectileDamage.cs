@@ -9,6 +9,7 @@ public class ProjectileDamage : MonoBehaviour
     public AudioClip collisionClip;
     public Animator animator;
 
+
     [Header("Damage")]
     public float damage = 1f;
     public float minSpeed = 0.5f;    // No damage will be caused at speeds below this.
@@ -19,6 +20,7 @@ public class ProjectileDamage : MonoBehaviour
     public string collisionTriggerName = "Collision";
     void Awake()
     {
+        
         rb = GetComponent<Rigidbody>();
         if (projectileOwner == null)
             projectileOwner = GetComponent<ProjectileOwner>(); 
@@ -26,12 +28,17 @@ public class ProjectileDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+
         if (!armed) 
             return;
 
         // Low speed: usually rolling on the ground, stepping on, minor collision.
         if (rb.linearVelocity.magnitude < minSpeed)
+        {
+            armed = false;
             return;
+        }
+            
 
         ContactPoint contact = other.GetContact(0);
         Vector3 hitPosition = contact.point;
@@ -60,6 +67,7 @@ public class ProjectileDamage : MonoBehaviour
         Vector3 hitPoint = other.GetContact(0).point;
         Vector3 hitForce = Vector3.zero; 
 
+        
         damageable.TakeDamage(damage, hitPoint, hitForce, gameObject);
     }
 }

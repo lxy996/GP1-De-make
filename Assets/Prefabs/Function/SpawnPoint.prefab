@@ -81,12 +81,32 @@ MonoBehaviour:
     blockRadius: 0.35
   - prefab: {fileID: 8405476724554281031, guid: 918b48dfa02db7a42b108f3ebad4df32, type: 3}
     weight: 2
-    yOffset: 0.44
+    yOffset: 0.39
     blockRadius: 0.5
   - prefab: {fileID: 8460184354610680493, guid: e3e9e2aa6d64c4443bf722cc8b2cf29f, type: 3}
     weight: 2
-    yOffset: 0.625
+    yOffset: 0.64
     blockRadius: 2
+  - prefab: {fileID: 5806734772603578880, guid: 5d5ae383d5996fb47b56d15303de359e, type: 3}
+    weight: 2
+    yOffset: 0.97
+    blockRadius: 0.9
+  - prefab: {fileID: 4190835123748379534, guid: e780b38ef3849ca41970bfa89e23066b, type: 3}
+    weight: 2
+    yOffset: 0.375
+    blockRadius: 0.4
+  - prefab: {fileID: 2925192480217495885, guid: 47ab3f2dc241dc247a8be61f0bc43554, type: 3}
+    weight: 2
+    yOffset: 0.28
+    blockRadius: 0.35
+  - prefab: {fileID: 4077276668151979394, guid: 72f032d1f7cd51d4f9713a32023bb25f, type: 3}
+    weight: 2
+    yOffset: 0.46
+    blockRadius: 0.9
+  - prefab: {fileID: 4738878816250134865, guid: 687c6824454343f4c84d2227b80df2ab, type: 3}
+    weight: 2
+    yOffset: 0.66
+    blockRadius: 0.9
   blockingMask:
     serializedVersion: 2
     m_Bits: 322560

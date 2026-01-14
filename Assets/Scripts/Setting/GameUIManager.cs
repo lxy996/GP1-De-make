@@ -29,13 +29,15 @@ public class GameUIManager : MonoBehaviour
     public PlayerHealth playerHealth;
     public FirstPersonController playerController;
     public PlayerInteractor playerInteractor;
+    public GameObject playerArms;
+    public HandGrab handGrab;
 
     // Game Statue
     public bool isPaused = false;
     public bool isGameStarted = false;
     void Start()
     {
-        
+        playerArms.SetActive (false);
         ShowMainMenu();
         currentSensLevel = 3;
         isAudioOn = AudioListener.volume > 0.01f;
@@ -89,6 +91,7 @@ public class GameUIManager : MonoBehaviour
     // Play game
     public void OnPlayButton()
     {
+        playerArms.SetActive(true);
         isGameStarted = true;
         isPaused = false;
         playerInteractor.tipHasShown = false;
@@ -110,7 +113,8 @@ public class GameUIManager : MonoBehaviour
         UnlockCursor();       // Unlock the mouse
 
         if (pauseMenuPanel) pauseMenuPanel.SetActive(true);
-        if (hudPanel) hudPanel.SetActive(false); 
+        if (hudPanel) hudPanel.SetActive(false);
+        if (handGrab != null) handGrab.enabled = false;
     }
 
 
@@ -124,6 +128,7 @@ public class GameUIManager : MonoBehaviour
         if (pauseMenuPanel) pauseMenuPanel.SetActive(false);
         if (optionsPanel) optionsPanel.SetActive(false); 
         if (hudPanel) hudPanel.SetActive(true);
+        if (handGrab != null) handGrab.enabled = true;
 
         ApplySensitivityToPlayer();
     }

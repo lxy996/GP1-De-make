@@ -35,6 +35,8 @@ public class HandGrab : MonoBehaviour
 
     [Header("Throw")]
     public float throwForce = 16f;
+    public AudioClip throwClip;
+    public AudioSource audioSource;
 
     Rigidbody leftHeld;  
     Rigidbody rightHeld;
@@ -150,6 +152,20 @@ public class HandGrab : MonoBehaviour
                 targetRb.transform.localPosition = Vector3.zero;
                 targetRb.transform.localRotation = Quaternion.identity;
 
+                Collider[] projectileColliders = targetRb.GetComponentsInChildren<Collider>();
+                Collider[] playerColliders = GetComponentsInChildren<Collider>(); 
+
+                if (projectileColliders.Length > 0 && playerColliders.Length > 0)
+                {
+                    foreach (var pCol in playerColliders)
+                    {
+                        foreach (var sCol in projectileColliders)
+                        {
+                            Physics.IgnoreCollision(sCol, pCol, true);
+                        }
+                    }
+                }
+
                 if (isLeft) leftHeld = targetRb;
                 else rightHeld = targetRb;
 
@@ -249,6 +265,7 @@ public class HandGrab : MonoBehaviour
 
         held.transform.SetParent(null, true);
         
+
         var ownerComp = held.GetComponent<ProjectileOwner>();
         if (ownerComp != null)
         {
@@ -271,17 +288,19 @@ public class HandGrab : MonoBehaviour
 
         // To avoid the fireball immediately destroy
         Collider[] playerColliders = GetComponentsInChildren<Collider>();
-        Collider projectileCollider = held.GetComponent<Collider>();
+        Collider[] projectileColliders = held.GetComponentsInChildren<Collider>();
 
-        if (projectileCollider != null && playerColliders.Length > 0)
+        if (projectileColliders.Length > 0 && playerColliders.Length > 0)
         {
-            foreach (var col in playerColliders)
+            foreach (var pCol in playerColliders)
             {
-                
-                Physics.IgnoreCollision(projectileCollider, col, true);
+                foreach (var projCol in projectileColliders)
+                {
+                    Physics.IgnoreCollision(projCol, pCol, true);
+                }
             }
 
-            StartCoroutine(RestoreCollision(projectileCollider, playerColliders, ignoreCollisionTime)); 
+            StartCoroutine(RestoreCollision(projectileColliders, playerColliders, ignoreCollisionTime)); 
         }
 
 
@@ -293,7 +312,11 @@ public class HandGrab : MonoBehaviour
         held.angularVelocity = Vector3.zero;
 
         Vector3 dir = cam.transform.forward;
+
+        audioSource.PlayOneShot(throwClip);
         held.AddForce(dir * throwForce, ForceMode.VelocityChange);
+       
+        HandleSpecialThrowLogic(held);
 
         // To count the number of throw
         if (GameLevelManager.Instance)
@@ -407,16 +430,21 @@ public class HandGrab : MonoBehaviour
 
         return true;
     }
-    IEnumerator RestoreCollision(Collider projectileCol, Collider[] ownerCols, float delay)
+    IEnumerator RestoreCollision(Collider[] projectileCols, Collider[] ownerCols, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        if (projectileCol != null)
+        foreach (var projCol in projectileCols)
         {
-            foreach (var col in ownerCols)
+            if (projCol == null) 
+                continue;
+
+            foreach (var ownerCol in ownerCols)
             {
-                if (col != null)
-                    Physics.IgnoreCollision(projectileCol, col, false);
+                if (ownerCol == null) 
+                    continue;
+                
+                Physics.IgnoreCollision(projCol, ownerCol, false);
             }
         }
     }
@@ -529,11 +557,11 @@ public class HandGrab : MonoBehaviour
         else rightHeld = newItem;
     }
 
-    public bool TrySpawnItemInRightHand(Rigidbody itemPrefab)
+    public void TrySpawnItemInRightHand(Rigidbody itemPrefab)
     {
         
         if (rightBusy || rightHeld != null)
-            return false;
+            return;
 
         Rigidbody newItem = Instantiate(itemPrefab);
         newItem.isKinematic = true;
@@ -556,7 +584,7 @@ public class HandGrab : MonoBehaviour
 
         rightHeld = newItem;
 
-        return true;
+        return;
     }
 
     private void HandleSpecialGrabLogic(Rigidbody rb)
@@ -577,6 +605,38 @@ public class HandGrab : MonoBehaviour
 
             var agent = rb.GetComponent<NavMeshAgent>();
             if (agent != null) agent.enabled = false;
+
+
+            var animator = rb.GetComponentInChildren<Animator>();
+            if (animator != null)
+            {
+                animator.enabled = false;
+               
+            }
+                
+
+        }
+    }
+
+    private void HandleSpecialThrowLogic(Rigidbody rb)
+    {
+        GrabbableItem item = rb.GetComponent<GrabbableItem>();
+        if (item == null)
+            return;
+
+        // If the item is slime
+        if (item.type == GrabbableType.Slime)
+        {
+            // Turn off the ai of slime
+
+            var animator = rb.GetComponentInChildren<Animator>();
+            if (animator != null)
+            {
+                animator.enabled = true;
+                animator.SetTrigger("Throw");
+
+            }
+
 
         }
     }

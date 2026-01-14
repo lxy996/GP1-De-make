@@ -29,10 +29,9 @@ public class LockedDoor : EnemyHealth
 
 
             if (unlockVfx != null) Instantiate(unlockVfx, transform.position, Quaternion.identity);
-            if (audioSource != null && unlockSound != null)
-            {
-                audioSource.PlayOneShot(unlockSound);
-            }
+
+            AudioSource.PlayClipAtPoint(unlockSound, transform.position);
+            
             Destroy(damageSource);
         }
        

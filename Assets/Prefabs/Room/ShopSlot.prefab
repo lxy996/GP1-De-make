@@ -2586,8 +2586,8 @@ MonoBehaviour:
   potionPrefab: {fileID: 7077653229975020043, guid: 05907cc6c8bb18b4ea05d2c79ef3383c, type: 3}
   floatingUiPrefab: {fileID: 3227140825055441369, guid: 114650e3fb791944eb78746565bd5be0, type: 3}
   audioSource: {fileID: 3088818160184053870}
-  buySound: {fileID: 0}
-  noMoneySound: {fileID: 0}
+  buySound: {fileID: 8300000, guid: f65240c626f390244aa11b257a6dc5bc, type: 3}
+  noMoneySound: {fileID: 8300000, guid: 00f84a4fc5433174f87c3b8df1790d1f, type: 3}
 --- !u!1 &8041507155530806948
 GameObject:
   m_ObjectHideFlags: 0
